@@ -91,7 +91,10 @@
               <div class="lightbox-target" :id="key"><img v-bind:src="User.url"/><a class="lightbox-close" href="#"></a></div>
             </td>
             <td> <br><br> <span class="tag is-danger">{{User.status}}</span>    </td>
-             <td> <br><br> <button type="button" class="button is-info is-outlined" name="buttonAdd" @click="update(key,User.money,addmoney)" >Approved</button> </td>
+            <td>
+                  
+
+            </td>
 
      </tr>
       </tbody>
@@ -114,7 +117,6 @@
            <td> {{User.money}}</td>
            <td> <button type="button" class="button is-primary is-outlined" name="buttonAdd" @click="swap(key)" >Add money</button> </td>
            <!-- <td><button type="button" class="button is-danger is-outlined" name="buttonAdd" @click="swap(key)" >Edit money</button> </td> -->
-        
          </tr>
        </tbody>
        <tbody  class="content" v-else >
