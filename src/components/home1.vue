@@ -1,0 +1,125 @@
+<template lang="html">
+  <div >
+    <!--  แทปฟ้า -->
+  <section class="hero is-primary">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-1">
+          W a s h
+          <h2 class="is-pulled-right">
+              <img class="image is-64x64" @click = "logout()" src="../assets/logout3.png">
+          </h2>
+        </h1>
+      </div>
+    </div>
+  </section>
+  <!--  จบ แทปฟ้า -->
+<br>
+  <div class="tabs is-centered is-boxed is-medium">
+  <ul>
+    <li class="is-active">
+      <a >
+        <span class="icon is-small"><i class="fa fa-users"></i></span>
+        <span v-on:click="home()">MEMBER</span>
+      </a>
+    </li>
+    <li>
+      <a>
+        <span class="icon is-small"><i class="fa fa-user-plus"></i></span>
+        <span v-on:click="addadmin()" >Add admin</span>
+      </a>
+    </li>
+    <li >
+      <a>
+        <span class="icon is-small"><i class="fa fa-money"></i></span>
+        <span  v-on:click="Add_user_credit()" >Add user credit</span>
+      </a>
+    </li>
+    <li>
+      <a>
+        <span class="icon is-small"><i class="fa fa-pie-chart"></i></span>
+        <span  v-on:click="Earnings_Revenue()">Earnings Revenue</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div  class="table1" >
+<table class="table" >
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+     <th scope="col">Name</th>
+     <th scope="col">E-mail</th>
+      <th scope="col">Credit</th>
+    </tr>
+  </thead>
+    <tbody  v-for = " (users, key, count) in showusers">
+      <tr>
+        <td>  {{count+1}}  </td>
+        <td>  {{users.name}}  </td>
+        <td>  {{users.email}} </td>
+        <td>  {{users.money}} Bath </td>
+      </tr>
+    </tbody>
+
+</table>
+</div>
+ </div>
+</template>
+
+<script>
+// Initialize Firebase
+import firebase from 'firebase'
+
+export default {
+  name: 'home',
+  data () {
+    return {
+      showusers: '',
+      count: 0
+    }
+  },
+  created: function () { /* แสดงชื่อ Admin */
+    var user = firebase.auth().currentUser
+    if (user != null) {
+      this.admin = user.email
+    }
+    this.pullData()
+  },  /* จบ แสดงชื่อ Admin */
+  methods: {
+    pullData: function () {   /* แสดงชือตาราง User ทั้งหมด */
+      let that = this
+      firebase.database().ref('/users/').once('value').then(function (snapshot) {
+        that.showusers = snapshot.val()
+      })
+    },
+    logout: function () {
+      firebase.auth().signOut().then(() => {
+        this.$router.replace('/')
+      })
+    },
+    addadmin () {
+      this.$router.push({path: '/addadmin1'})
+    },
+    Earnings_Revenue () {
+      this.$router.push({path: '/Earnings_Revenue1'})
+    },
+    home () {
+      this.$router.push({path: '/home1'})
+    },
+    Add_user_credit () {
+      this.$router.push({path: '/Addcredit1'})
+    }
+  }
+}
+</script>
+
+<style lang="css">
+.table1{
+  width: 80%;
+  margin-left: 10%;
+
+}
+
+
+</style>
