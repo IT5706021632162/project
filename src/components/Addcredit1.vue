@@ -1,18 +1,17 @@
 <template lang="html">
   <div >
     <!--  แทปฟ้า -->
-  <section class="hero is-primary">
-    <div class="hero-body">
-      <div class="container">
-        <h1 class="title is-1">
-          W a s h
-          <h2 class="is-pulled-right">
-              <img class="image is-64x64" @click = "logout()" src="../assets/logout3.png">
-          </h2>
-        </h1>
-      </div>
-    </div>
-  </section>
+    <section class="hero is-primary is-bold">
+        <div class="container"><br>
+          <h1 class="title is-1">
+            W a s h
+            <h2 class="is-pulled-right">
+                <img class="image is-64x64" @click = "logout()" src="../assets/logout3.png">
+            </h2>
+          </h1>
+          <br>
+        </div>
+    </section>
   <!--  จบ แทปฟ้า -->
 <br>
 <!--  เมนู -->
@@ -75,7 +74,7 @@
     <a class="btn-light active"  data-toggle="pill"   aria-controls="pills-home" aria-selected="true">Add Credit</a>
   </li>
   <li class="nav-item" v-on:click="Add_credit_center()" >
-    <a class="btn-light"  data-toggle="pill"   aria-controls="pills-profile" aria-selected="false">Status Approve</a>
+    <a class="btn-light"  data-toggle="pill"   aria-controls="pills-profile" aria-selected="false">Success Approve</a>
   </li>
   <li class="nav-item" v-on:click="Add_credit_right()">
     <a class="btn-light"  data-toggle="pill"   aria-controls="pills-contact" aria-selected="false">Credit</a>
@@ -145,7 +144,7 @@
                                   <td>  {{User.email}}</td>
                                   <td>  {{User.money}}</td>
                                   <td>  <input type="number" class="button" name="" value="" v-model="addmoney"> </td>
-                                  <td>  <button type="button" class="button is-info is-outlined" name="buttonAdd" @click="update(key,Users.key,User.money,addmoney,User.email,User.id,User.name)" >Approved</button>  </td>
+                                  <td>  <button type="button" class="button is-info is-outlined" name="buttonAdd" @click="update(key,Users.key,User.money,addmoney,User.email,User.id,User.name)" >Submit</button>  </td>
                                   <td>   <a class="btn btn-danger" data-toggle="collapse" :href="'#'+User.id" aria-expanded="false" aria-controls="collapseExample"> Cancel </a> </td>
                                 </tr>
                               </thead>
@@ -282,37 +281,58 @@ export default {
       console.log(key)
       console.log(this.keyimage)
       money = +money + +addmoney
-      if (money >= 0) {
-        // firebase.database().ref('/users/' + key).set({
-        //   money: money,
-        //   email: mail,
-        //   name: name,
-        //   id: id
-        // })
-        firebase.database().ref('/users/').child(key).update({
-          money: money
-        })
-        firebase.database().ref('/image/').child(this.keyimage1).update({
-          status: 'Approved'
-        })
-        this.$toast.open({
-          message: '<i class="fa fa-check-circle"></i> Add credit Success !',
-          type: 'is-success'
+      if (addmoney > 0) {
+        this.$dialog.confirm({
+          title: 'Add Credit',
+          message: 'Are you sure you want to <u>Add Credit </u> </br><b> ' + mail + ' </br>  Money : ' + addmoney + '  Bath.</b>',
+          confirmText: 'Confirm',
+          type: 'is-success',
+          hasIcon: true,
+          onConfirm: () => {
+            if (money >= 0) {
+              firebase.database().ref('/users/').child(key).update({
+                money: money
+              })
+              firebase.database().ref('/image/').child(this.keyimage1).update({
+                status: 'Approved'
+              })
+              this.$toast.open({
+                message: '<i class="fa fa-check-circle"></i> Add credit Success !',
+                type: 'is-success'
+              })
+              this.checkEdit = ''
+              this.addmoney = 0
+              this.pullData()
+            } else {
+              firebase.database().ref('/users/' + key).set({
+                money: addmoney,
+                email: mail,
+                name: name,
+                id: id
+              })
+              firebase.database().ref('/image/').child(this.keyimage1).update({
+                status: 'Approved'
+              })
+              this.$toast.open({
+                message: '<i class="fa fa-check-circle"></i>Add credit Success !',
+                type: 'is-success'
+              })
+            }
+            this.checkEdit = ''
+            this.addmoney = 0
+            this.pullData()
+          }
         })
       } else {
-        firebase.database().ref('/users/' + key).set({
-          money: addmoney,
-          email: mail,
-          name: name,
-          id: id
+        this.$dialog.alert({
+          title: 'Error',
+          message: 'Please enter the money.</br> <b>Please try again. </b> ',
+          type: 'is-danger',
+          hasIcon: true,
+          icon: 'times-circle',
+          iconPack: 'fa'
         })
-        firebase.database().ref('/image/').child(this.keyimage1).update({
-          status: 'Approved'
-        })
-        this.$toast.open({
-          message: '<i class="fa fa-check-circle"></i>Add credit Success !',
-          type: 'is-success'
-        })
+        this.pullData()
       }
       this.checkEdit = ''
       this.addmoney = 0

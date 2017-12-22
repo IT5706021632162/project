@@ -1,17 +1,16 @@
 <template lang="html">
   <div >
     <!--  แทปฟ้า -->
-  <section class="hero is-primary">
-    <div class="hero-body">
-      <div class="container">
-        <h1 class="title is-1">
+  <section class="hero is-primary is-bold">
+      <div class="container"><br>
+        <h1 class="title is-1" style="font-family: 'Seymour One', sans-serif;">
           W a s h
           <h2 class="is-pulled-right">
               <img class="image is-64x64" @click = "logout()" src="../assets/logout3.png">
           </h2>
         </h1>
+        <br>
       </div>
-    </div>
   </section>
   <!--  จบ แทปฟ้า -->
 <br>

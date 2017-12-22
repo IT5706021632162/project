@@ -1,18 +1,17 @@
 <template lang="html">
   <div >
     <!--  แทปฟ้า -->
-  <section class="hero is-primary">
-    <div class="hero-body">
-      <div class="container">
-        <h1 class="title is-1">
-          W a s h
-          <h2 class="is-pulled-right">
-              <img class="image is-64x64" @click = "logout()" src="../assets/logout3.png">
-          </h2>
-        </h1>
-      </div>
-    </div>
-  </section>
+    <section class="hero is-primary is-bold">
+        <div class="container"><br>
+          <h1 class="title is-1">
+            W a s h
+            <h2 class="is-pulled-right">
+                <img class="image is-64x64" @click = "logout()" src="../assets/logout3.png">
+            </h2>
+          </h1>
+          <br>
+        </div>
+    </section>
   <!--  จบ แทปฟ้า -->
 <br>
 <!--  เมนู -->
@@ -90,7 +89,7 @@
         <td> {{admin.email}} </td>
         <td> {{admin.password}}  </td>
         <td>
-          <a class="button is-danger is-outlined"><span  @click="remove(key)" >Delete</span><span class="icon is-small">  <i class="fa fa-times"></i></span></a>
+          <a class="button is-danger is-outlined"><span  @click="remove(key,admin.email)" >Delete</span><span class="icon is-small">  <i class="fa fa-times"></i></span></a>
         </td>
       </tr>
     </tbody>
@@ -167,10 +166,21 @@ export default {
         }
       )
     },
-    remove: function (key) {
-      alert('Delete Admin Complete')
-      firebase.database().ref('Admin').child(key).remove()
-      this.pullData()
+    remove: function (key, email) {
+      this.$dialog.confirm({
+        title: 'Deleting account',
+        message: 'Are you sure you want to <u>Delete</u> </br><b> ' + email + '</b> account? </br> This action cannot be undone.',
+        confirmText: 'Delete Account',
+        type: 'is-danger',
+        hasIcon: true,
+        onConfirm: () => {
+          firebase.database().ref('Admin').child(key).remove()
+          this.$toast.open('Account deleted!')
+          this.pullData()
+        }
+      })
+      // this.$toast.open('Account deleted!')
+      // this.pullData()
     }
   }
 }
