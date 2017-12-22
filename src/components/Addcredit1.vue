@@ -80,8 +80,8 @@
         <th scope="col">Status</th>
       </tr>
     </thead>
-      <tbody v-for = " (User, key, count) in showimage">
-        <tr>
+      <tbody v-for = " (User, key, count) in showimage"  >
+        <tr  v-if= " User.status === 'waiting for approve'" >
           <td>  {{count+1}}   </td>
           <td>  {{User.email}}  </td>
           <td>  {{User.Date}}  </td>
@@ -89,13 +89,39 @@
           <td width="17%">
             <a class="lightbox" :href="'#'+key"><img class="image is-128x128" v-bind:src="User.url"/></a>
               <div class="lightbox-target" :id="key"><img v-bind:src="User.url"/><a class="lightbox-close" href="#"></a></div>
-            </td>
+          </td>
             <td> <br><br> <span class="tag is-danger">{{User.status}}</span>    </td>
-            <td>
-                  
-
-            </td>
-
+            <td> <br><br> <a class="btn btn-primary" data-toggle="collapse" :href="'#'+User.uid" aria-expanded="false" aria-controls="collapseExample">   Approved </a></td>
+  </a>
+          <tr>
+              <td colspan="7">
+                    <div   v-for = " (User, key, count) in showusers">
+                      <div class="collapse" :id="User.id">
+                        <div class="card card-body">
+                          <table>
+                              <thead>
+                                <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">E-mail</th>
+                                  <th scope="col">Money</th>
+                                  <th scope="col">Addmoney</th>
+                                   <!-- <th scope="col">Edit money</th> -->
+                                </tr>
+                                <tr>
+                                  <td>  {{count+1}}  </td>
+                                  <td>  {{User.email}}</td>
+                                  <td>  {{User.money}}</td>
+                                  <td>  <input type="number" class="button" name="" value="" v-model="addmoney"> </td>
+                                  <td>  <button type="button" class="button is-info is-outlined" name="buttonAdd" @click="update(key,User.money,addmoney,User.email,User.id,User.name)" >Approved</button>  </td>
+                                  <td>  <a class="btn btn-danger" data-toggle="collapse" :href="'#'+User.id" aria-expanded="false" aria-controls="collapseExample">   Cancel </a> </td>
+                                </tr>
+                              </thead>
+                          </table>
+                        </div>
+                      </div>
+                    </div>  <br>
+              </td>
+          </tr>
      </tr>
       </tbody>
   </table>
@@ -117,6 +143,7 @@
            <td> {{User.money}}</td>
            <td> <button type="button" class="button is-primary is-outlined" name="buttonAdd" @click="swap(key)" >Add money</button> </td>
            <!-- <td><button type="button" class="button is-danger is-outlined" name="buttonAdd" @click="swap(key)" >Edit money</button> </td> -->
+
          </tr>
        </tbody>
        <tbody  class="content" v-else >
@@ -144,10 +171,10 @@ export default {
   name: 'Add_user_credit',
   data () {
     return {
+      mail: '',
       data: {
         name: '',
         surname: '',
-        money: 0,
         addmoney: 0
       },
       showusers: '',
@@ -192,13 +219,29 @@ export default {
     Add_user_credit () {
       this.$router.push({path: '/Addcredit1'})
     },
-    update: function (key, money, addmoney) {
+    update: function (key, money, addmoney, mail, id, name) {
+      // money = +money + +addmoney
       money = +money + +addmoney
-      console.log(key)
+      console.log(addmoney)
+      console.log(mail)
+      console.log(id)
+      console.log(name)
       alert('Add Credit Complete')
-      firebase.database().ref('/users/').child(key).update({
-        money: money
-      })
+      if (money >= 0) {
+        firebase.database().ref('/users/' + key).set({
+          money: money,
+          email: mail,
+          name: name,
+          id: id
+        })
+      } else {
+        firebase.database().ref('/users/' + key).set({
+          money: addmoney,
+          email: mail,
+          name: name,
+          id: id
+        })
+      }
       this.checkEdit = ''
       this.addmoney = 0
       this.pullData()
