@@ -52,12 +52,18 @@
     <li v-on:click="credit_left()" >
       <a>
         <span class="icon"><i class="fa fa-angle-left"></i></span>
-        <span >credit</span>
+        <span >Add Credit</span>
+      </a>
+    </li>
+    <li  v-on:click="Add_credit_center()" >
+      <a>
+        <span>Status Approve </span>
+        <span class="icon"><i class="fa fa-angle-up"></i></span>
       </a>
     </li>
     <li  v-on:click="Add_credit_right()" >
       <a>
-        <span>Add credit</span>
+        <span>Credit</span>
         <span class="icon"><i class="fa fa-angle-right"></i></span>
       </a>
     </li>
@@ -69,7 +75,7 @@
 
   <div  class="table1" >
   <!--  ตาราง user เครดิต -->
-  <table class="table" v-if= " type === 'credit'" >
+  <table class="table" v-if= " type === 'addcredit'" >
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -80,22 +86,22 @@
         <th scope="col">Status</th>
       </tr>
     </thead>
-      <tbody v-for = " (User, key, count) in showimage"  >
-        <tr  v-if= " User.status === 'waiting for approve'" >
+      <tbody v-for = " (Users, key, count) in showimage"  >
+        <tr   v-if= "Users.status === 'waiting for approve'">
           <td>  {{count+1}}   </td>
-          <td>  {{User.email}}  </td>
-          <td>  {{User.Date}}  </td>
-          <td>  {{User.Time}}  </td>
+          <td>  {{Users.email}}  </td>
+          <td>  {{Users.Date}}  </td>
+          <td>  {{Users.Time}}  </td>
           <td width="17%">
-            <a class="lightbox" :href="'#'+key"><img class="image is-128x128" v-bind:src="User.url"/></a>
-              <div class="lightbox-target" :id="key"><img v-bind:src="User.url"/><a class="lightbox-close" href="#"></a></div>
+            <a class="lightbox" :href="'#'+key"><img class="image is-128x128" v-bind:src="Users.url"/></a>
+              <div class="lightbox-target" :id="key"><img v-bind:src="Users.url"/><a class="lightbox-close" href="#"></a></div>
           </td>
-            <td> <br><br> <span class="tag is-danger">{{User.status}}</span>    </td>
-            <td> <br><br> <a class="btn btn-primary" data-toggle="collapse" :href="'#'+User.uid" aria-expanded="false" aria-controls="collapseExample">   Approved </a></td>
+            <td> <br><br> <span class="tag is-danger">{{Users.status}}</span>    </td>
+            <td> <br><br> <a class="btn btn-primary" data-toggle="collapse" :href="'#'+Users.uid" aria-expanded="false" aria-controls="collapseExample"> Approved </a></td>
   </a>
           <tr>
               <td colspan="7">
-                    <div   v-for = " (User, key, count) in showusers">
+                    <div   v-for = " (User, key, count) in showusers"  v-if= "Users.status === 'waiting for approve'">
                       <div class="collapse" :id="User.id">
                         <div class="card card-body">
                           <table>
@@ -112,8 +118,8 @@
                                   <td>  {{User.email}}</td>
                                   <td>  {{User.money}}</td>
                                   <td>  <input type="number" class="button" name="" value="" v-model="addmoney"> </td>
-                                  <td>  <button type="button" class="button is-info is-outlined" name="buttonAdd" @click="update(key,User.money,addmoney,User.email,User.id,User.name)" >Approved</button>  </td>
-                                  <td>  <a class="btn btn-danger" data-toggle="collapse" :href="'#'+User.id" aria-expanded="false" aria-controls="collapseExample">   Cancel </a> </td>
+                                  <td>  <button type="button" class="button is-info is-outlined" name="buttonAdd" @click="update(key,Users.key,User.money,addmoney,User.email,User.id,User.name)" >Approved</button>  </td>
+                                  <td>   <a class="btn btn-danger" data-toggle="collapse" :href="'#'+Users.id" aria-expanded="false" aria-controls="collapseExample"> Cancel </a> </td>
                                 </tr>
                               </thead>
                           </table>
@@ -125,14 +131,41 @@
      </tr>
       </tbody>
   </table>
+  <!-- ------------------------------------ -->
+  <table class="table" v-if= " type === 'creditcenter'" >
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">E-mail</th>
+        <th scope="col">Date</th>
+        <th scope="col">Time</th>
+        <th scope="col">Photo</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+      <tbody v-for = " (Users, key, count) in showimage"  >
+        <tr   v-if= "Users.status === 'Approved'">
+          <td>  {{count+1}}   </td>
+          <td>  {{Users.email}}  </td>
+          <td>  {{Users.Date}}  </td>
+          <td>  {{Users.Time}}  </td>
+          <td width="17%">
+            <a class="lightbox" :href="'#'+key"><img class="image is-128x128" v-bind:src="Users.url"/></a>
+              <div class="lightbox-target" :id="key"><img v-bind:src="Users.url"/><a class="lightbox-close" href="#"></a></div>
+          </td>
+            <td> <br><br> <span class="tag is-success">{{Users.status}}</span>    </td>
+            <!-- <td> <br><br> <a class="btn btn-primary" data-toggle="collapse" :href="'#'+Users.uid" aria-expanded="false" aria-controls="collapseExample"> Approved </a></td> -->
+  </a>
+     </tr>
+      </tbody>
+  </table>
   <!--  ----------------------------- -->
-   <table class="table" v-if= " type === 'addcredit'" >
+   <table class="table" v-if= " type === 'credit'" >
      <thead>
        <tr>
          <th scope="col">#</th>
          <th scope="col">Name</th>
          <th scope="col">Money</th>
-         <th scope="col">Addmoney</th>
           <!-- <th scope="col">Edit money</th> -->
        </tr>
      </thead>
@@ -141,19 +174,8 @@
             <td>  {{count+1}}  </td>
            <td>  {{User.email}}  </td>
            <td> {{User.money}}</td>
-           <td> <button type="button" class="button is-primary is-outlined" name="buttonAdd" @click="swap(key)" >Add money</button> </td>
            <!-- <td><button type="button" class="button is-danger is-outlined" name="buttonAdd" @click="swap(key)" >Edit money</button> </td> -->
 
-         </tr>
-       </tbody>
-       <tbody  class="content" v-else >
-         <tr>
-           <td>  {{count+1}}  </td>
-           <td>  {{User.email}}  </td>
-           <td>  {{User.money}}  </td>
-           <td>  <input type="number" class="button" name="" value="" v-model="addmoney"> </td>
-           <td> <button type="button" class="button is-info is-outlined" name="buttonAdd" @click="update(key,User.money,addmoney)" >Approved</button> </td>
-           <td> <button type="button" class="button is-danger is-outlined" name="buttonAdd" @click="cancel(key,User.money)" >Cancel</button> </td>
          </tr>
        </tbody>
    </table>
@@ -172,6 +194,7 @@ export default {
   data () {
     return {
       mail: '',
+      status: '',
       data: {
         name: '',
         surname: '',
@@ -219,20 +242,23 @@ export default {
     Add_user_credit () {
       this.$router.push({path: '/Addcredit1'})
     },
-    update: function (key, money, addmoney, mail, id, name) {
-      // money = +money + +addmoney
+    update: function (key, key1, money, addmoney, mail, id, name) {
+      console.log(key)
+      console.log(key1)
       money = +money + +addmoney
-      console.log(addmoney)
-      console.log(mail)
-      console.log(id)
-      console.log(name)
       alert('Add Credit Complete')
       if (money >= 0) {
-        firebase.database().ref('/users/' + key).set({
-          money: money,
-          email: mail,
-          name: name,
-          id: id
+        // firebase.database().ref('/users/' + key).set({
+        //   money: money,
+        //   email: mail,
+        //   name: name,
+        //   id: id
+        // })
+        firebase.database().ref('/users/').child(key).update({
+          money: money
+        })
+        firebase.database().ref('/image/').child('-L0vBut-Bk5p2BAExcq3').update({
+          status: 'Approved'
         })
       } else {
         firebase.database().ref('/users/' + key).set({
@@ -240,6 +266,9 @@ export default {
           email: mail,
           name: name,
           id: id
+        })
+        firebase.database().ref('/image/').child('-L0vBut-Bk5p2BAExcq3').update({
+          status: 'Approved'
         })
       }
       this.checkEdit = ''
@@ -256,10 +285,16 @@ export default {
       this.checkEdit1 = 'edit'
     },
     credit_left: function () {
-      this.type = 'credit'
+      this.type = 'addcredit'
     },
     Add_credit_right: function () {
-      this.type = 'addcredit'
+      this.type = 'credit'
+    },
+    Add_credit_center: function () {
+      this.type = 'creditcenter'
+    },
+    status: function (key) {
+      this.status = key
     }
   }
 }
@@ -277,30 +312,25 @@ export default {
 
 /* Styles the thumbnail */
 
-a.lightbox img { /* รูป */
+a.lightbox img { /* รูป ที่แสดงอยู่ในตาราง รูปเล็กๆอะ*/
 height: 150px;
 border: 3px solid white;
 box-shadow: 3px 0px 8px rgba(0,0,0,.3);
-margin: 0px 20px 0px 20px;
+margin: 0px 0px 0px 0px;
 }
 
 /* Styles the lightbox, removes it from sight and adds the fade-in transition */
 
-.lightbox-target {
-margin-top: 10px;
-margin-bottom: 10px;
+.lightbox-target {/* กดที่ รูป แล้วจะแสดงตรงนี้ ที่แสดงอยู่ในตาราง รูปเล็กๆอะ*/
 position: fixed;
 top: -100%;
-width: 65%;
+width: 120%;
+height: 100%;
 background: rgba(0,0,0,.7);
 width: -100%;
 opacity: 0;
--webkit-transition: opacity .5s ease-in-out;
--moz-transition: opacity .5s ease-in-out;
--o-transition: opacity .5s ease-in-out;
-transition: opacity .5s ease-in-out;
 overflow: hidden;
-margin-left: -50%
+margin-left: -60%
 
 }
 
@@ -328,10 +358,9 @@ transition: .5s ease-in-out;
 
 a.lightbox-close {
 display: block;
-width:50px;
-height:50px;
+width:100%;
+height:100%;
 box-sizing: border-box;
-background: white;
 color: black;
 text-decoration: none;
 position: absolute;
