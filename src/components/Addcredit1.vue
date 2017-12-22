@@ -17,7 +17,7 @@
 <br>
 <!--  เมนู -->
 <div class="tabs is-centered is-boxed is-medium">
-<ul>
+<ul >
   <li>
     <a >
       <span class="icon is-small"><i class="fa fa-users"></i></span>
@@ -36,7 +36,7 @@
       <span  v-on:click="Add_user_credit()" >Add user credit</span>
     </a>
   </li>
-  <li>
+  <li >
     <a>
       <span class="icon is-small"><i class="fa fa-pie-chart"></i></span>
       <span v-on:click="Earnings_Revenue()">Earnings Revenue</span>
@@ -44,31 +44,48 @@
   </li>
 </ul>
 </div>
+
 <!--  จบ เมนู -->
 
 <!--  เมนูย่อย เครดิต -->
 <div class="tabs is-fullwidth">
-  <ul>
+  <!-- <ul>
     <li v-on:click="credit_left()" >
-      <a>
+      <a >
         <span class="icon"><i class="fa fa-angle-left"></i></span>
         <span >Add Credit</span>
       </a>
     </li>
-    <li  v-on:click="Add_credit_center()" >
+    <li v-on:click="Add_credit_center()" >
       <a>
         <span>Status Approve </span>
         <span class="icon"><i class="fa fa-angle-up"></i></span>
       </a>
     </li>
-    <li  v-on:click="Add_credit_right()" >
+    <li v-on:click="Add_credit_right()" >
       <a>
         <span>Credit</span>
         <span class="icon"><i class="fa fa-angle-right"></i></span>
       </a>
     </li>
-  </ul>
+  </ul> -->
+
+  <ul class="nav nav-pills mb-3"  role="tablist">
+  <li class="nav-item" v-on:click="credit_left()">
+    <a class="btn-light active"  data-toggle="pill"   aria-controls="pills-home" aria-selected="true">Add Credit</a>
+  </li>
+  <li class="nav-item" v-on:click="Add_credit_center()" >
+    <a class="btn-light"  data-toggle="pill"   aria-controls="pills-profile" aria-selected="false">Status Approve</a>
+  </li>
+  <li class="nav-item" v-on:click="Add_credit_right()">
+    <a class="btn-light"  data-toggle="pill"   aria-controls="pills-contact" aria-selected="false">Credit</a>
+  </li>
+</ul>
+
 </div>
+
+
+
 <!-- จบ เมนูย่อย เครดิต -->
 
 <!--  ตาราง user เครดิต -->
@@ -78,7 +95,7 @@
   <table class="table" v-if= " type === 'addcredit'" >
     <thead>
       <tr>
-        <th scope="col">#</th>
+
         <th scope="col">E-mail</th>
         <th scope="col">Date</th>
         <th scope="col">Time</th>
@@ -88,16 +105,26 @@
     </thead>
       <tbody v-for = " (Users, key, count) in showimage"  >
         <tr   v-if= "Users.status === 'waiting for approve'">
-          <td>  {{count+1}}   </td>
+
           <td>  {{Users.email}}  </td>
           <td>  {{Users.Date}}  </td>
           <td>  {{Users.Time}}  </td>
           <td width="17%">
-            <a class="lightbox" :href="'#'+key"><img class="image is-128x128" v-bind:src="Users.url"/></a>
-              <div class="lightbox-target" :id="key"><img v-bind:src="Users.url"/><a class="lightbox-close" href="#"></a></div>
+              <img data-toggle="modal" :data-target="'#'+key" class="image is-128x128" v-bind:src="Users.url"/>
+            <div :id="key" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                    <center>  <img v-bind:src="Users.url"/> </center>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <!-- <a class="lightbox" :href="'#'+key"><img class="image is-128x128" v-bind:src="Users.url"/></a>
+              <div class="lightbox-target" :id="key"><a class="lightbox-close" href="#"></a></div> -->
           </td>
             <td> <br><br> <span class="tag is-danger">{{Users.status}}</span>    </td>
-            <td> <br><br> <a class="btn btn-primary" data-toggle="collapse" :href="'#'+Users.uid" aria-expanded="false" aria-controls="collapseExample"> Approved </a></td>
+            <td> <br><br> <a class="btn btn-primary" data-toggle="collapse" :href="'#'+Users.uid" aria-expanded="true" aria-controls="collapseExample"  @click="keyimage(key)">Approved </a></td>
   </a>
           <tr>
               <td colspan="7">
@@ -107,19 +134,19 @@
                           <table>
                               <thead>
                                 <tr>
-                                  <th scope="col">#</th>
+
                                   <th scope="col">E-mail</th>
                                   <th scope="col">Money</th>
                                   <th scope="col">Addmoney</th>
                                    <!-- <th scope="col">Edit money</th> -->
                                 </tr>
                                 <tr>
-                                  <td>  {{count+1}}  </td>
+
                                   <td>  {{User.email}}</td>
                                   <td>  {{User.money}}</td>
                                   <td>  <input type="number" class="button" name="" value="" v-model="addmoney"> </td>
                                   <td>  <button type="button" class="button is-info is-outlined" name="buttonAdd" @click="update(key,Users.key,User.money,addmoney,User.email,User.id,User.name)" >Approved</button>  </td>
-                                  <td>   <a class="btn btn-danger" data-toggle="collapse" :href="'#'+Users.id" aria-expanded="false" aria-controls="collapseExample"> Cancel </a> </td>
+                                  <td>   <a class="btn btn-danger" data-toggle="collapse" :href="'#'+User.id" aria-expanded="false" aria-controls="collapseExample"> Cancel </a> </td>
                                 </tr>
                               </thead>
                           </table>
@@ -135,7 +162,7 @@
   <table class="table" v-if= " type === 'creditcenter'" >
     <thead>
       <tr>
-        <th scope="col">#</th>
+
         <th scope="col">E-mail</th>
         <th scope="col">Date</th>
         <th scope="col">Time</th>
@@ -145,13 +172,21 @@
     </thead>
       <tbody v-for = " (Users, key, count) in showimage"  >
         <tr   v-if= "Users.status === 'Approved'">
-          <td>  {{count+1}}   </td>
+
           <td>  {{Users.email}}  </td>
           <td>  {{Users.Date}}  </td>
           <td>  {{Users.Time}}  </td>
           <td width="17%">
-            <a class="lightbox" :href="'#'+key"><img class="image is-128x128" v-bind:src="Users.url"/></a>
-              <div class="lightbox-target" :id="key"><img v-bind:src="Users.url"/><a class="lightbox-close" href="#"></a></div>
+            <img data-toggle="modal" :data-target="'#'+key" class="image is-128x128" v-bind:src="Users.url"/>
+          <div :id="key" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-body">
+                  <center>  <img v-bind:src="Users.url"/> </center>
+                  </div>
+              </div>
+            </div>
+          </div>
           </td>
             <td> <br><br> <span class="tag is-success">{{Users.status}}</span>    </td>
             <!-- <td> <br><br> <a class="btn btn-primary" data-toggle="collapse" :href="'#'+Users.uid" aria-expanded="false" aria-controls="collapseExample"> Approved </a></td> -->
@@ -204,8 +239,9 @@ export default {
       showimage: '',
       checkEdit: '',
       checkEdit1: '',
-      type: 'credit',
-      img: this.$route.params.img
+      type: 'addcredit',
+      img: this.$route.params.img,
+      keyimage1: ''
     }
   },
   created: function () { /* แสดงชื่อ Admin */
@@ -244,9 +280,8 @@ export default {
     },
     update: function (key, key1, money, addmoney, mail, id, name) {
       console.log(key)
-      console.log(key1)
+      console.log(this.keyimage)
       money = +money + +addmoney
-      alert('Add Credit Complete')
       if (money >= 0) {
         // firebase.database().ref('/users/' + key).set({
         //   money: money,
@@ -257,8 +292,12 @@ export default {
         firebase.database().ref('/users/').child(key).update({
           money: money
         })
-        firebase.database().ref('/image/').child('-L0vBut-Bk5p2BAExcq3').update({
+        firebase.database().ref('/image/').child(this.keyimage1).update({
           status: 'Approved'
+        })
+        this.$toast.open({
+          message: '<i class="fa fa-check-circle"></i> Add credit Success !',
+          type: 'is-success'
         })
       } else {
         firebase.database().ref('/users/' + key).set({
@@ -267,8 +306,12 @@ export default {
           name: name,
           id: id
         })
-        firebase.database().ref('/image/').child('-L0vBut-Bk5p2BAExcq3').update({
+        firebase.database().ref('/image/').child(this.keyimage1).update({
           status: 'Approved'
+        })
+        this.$toast.open({
+          message: '<i class="fa fa-check-circle"></i>Add credit Success !',
+          type: 'is-success'
         })
       }
       this.checkEdit = ''
@@ -295,6 +338,11 @@ export default {
     },
     status: function (key) {
       this.status = key
+    },
+    keyimage (key) {
+      console.log('pass')
+      console.log(key)
+      this.keyimage1 = key
     }
   }
 }
@@ -305,122 +353,4 @@ export default {
   width: 80%;
   margin-left: 10%;
 }
-
-/*Eliminates padding, centers the thumbnail */
-
-
-
-/* Styles the thumbnail */
-
-a.lightbox img { /* รูป ที่แสดงอยู่ในตาราง รูปเล็กๆอะ*/
-height: 150px;
-border: 3px solid white;
-box-shadow: 3px 0px 8px rgba(0,0,0,.3);
-margin: 0px 0px 0px 0px;
-}
-
-/* Styles the lightbox, removes it from sight and adds the fade-in transition */
-
-.lightbox-target {/* กดที่ รูป แล้วจะแสดงตรงนี้ ที่แสดงอยู่ในตาราง รูปเล็กๆอะ*/
-position: fixed;
-top: -100%;
-width: 120%;
-height: 100%;
-background: rgba(0,0,0,.7);
-width: -100%;
-opacity: 0;
-overflow: hidden;
-margin-left: -60%
-
-}
-
-/* Styles the lightbox image, centers it vertically and horizontally, adds the zoom-in transition and makes it responsive using a combination of margin and absolute positioning */
-
-.lightbox-target img {
-margin: auto;
-position: absolute;
-top: 0;
-left:0;
-right:0;
-bottom: 0;
-max-height: 0%;
-max-width: 0%;
-border: 3px solid white;
-box-shadow: 5px 0px 8px rgba(0,0,0,.3);
-box-sizing: border-box;
--webkit-transition: .5s ease-in-out;
--moz-transition: .5s ease-in-out;
--o-transition: .5s ease-in-out;
-transition: .5s ease-in-out;
-}
-
-/* Styles the close link, adds the slide down transition */
-
-a.lightbox-close {
-display: block;
-width:100%;
-height:100%;
-box-sizing: border-box;
-color: black;
-text-decoration: none;
-position: absolute;
-top: -80px;
-right: 0;
--webkit-transition: .5s ease-in-out;
--moz-transition: .5s ease-in-out;
--o-transition: .5s ease-in-out;
-transition: .5s ease-in-out;
-}
-
-/* Provides part of the "X" to eliminate an image from the close link */
-
-a.lightbox-close:before {
-content: "";
-display: block;
-height: 30px;
-width: 1px;
-background: black;
-position: absolute;
-left: 26px;
-top:10px;
--webkit-transform:rotate(45deg);
--moz-transform:rotate(45deg);
--o-transform:rotate(45deg);
-transform:rotate(45deg);
-}
-
-/* Provides part of the "X" to eliminate an image from the close link */
-
-a.lightbox-close:after {
-content: "";
-display: block;
-height: 30px;
-width: 1px;
-background: black;
-position: absolute;
-left: 26px;
-top:10px;
--webkit-transform:rotate(-45deg);
--moz-transform:rotate(-45deg);
--o-transform:rotate(-45deg);
-transform:rotate(-45deg);
-}
-
-/* Uses the :target pseudo-class to perform the animations upon clicking the .lightbox-target anchor */
-
-.lightbox-target:target {
-opacity: 1;
-top: 0;
-bottom: 0;
-}
-
-.lightbox-target:target img {
-max-height: 100%;
-max-width: 100%;
-}
-
-.lightbox-target:target a.lightbox-close {
-top: 0px;
-}
-
 </style>
