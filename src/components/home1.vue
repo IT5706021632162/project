@@ -1,5 +1,5 @@
-<template lang="html">
-  <div >
+<template >
+  <div class="home">
     <!--  แทปฟ้า -->
   <section class="hero is-primary is-bold">
       <div class="container"><br>
@@ -119,6 +119,7 @@ export default {
   width: 80%;
   margin-left: 10%;
 }
+
 
 
 </style>

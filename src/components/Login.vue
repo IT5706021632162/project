@@ -102,7 +102,7 @@
           (err) => {
             this.$dialog.alert({
               title: 'Error',
-              message: 'Please enter the money.</br> ' + err.message + '<br><b>Please try again. </b> ',
+              message: 'Opps. ' + err.message,
               type: 'is-danger',
               hasIcon: true,
               icon: 'times-circle',
