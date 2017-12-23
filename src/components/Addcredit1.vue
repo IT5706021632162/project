@@ -3,8 +3,8 @@
     <!--  แทปฟ้า -->
     <section class="hero is-primary is-bold">
         <div class="container"><br>
-          <h1 class="title is-1">
-            W a s h
+          <h1 class="title is-1" style="font-family: 'Seymour One', sans-serif;">
+         W a s h
             <h2 class="is-pulled-right">
                 <img class="image is-64x64" @click = "logout()" src="../assets/logout3.png">
             </h2>

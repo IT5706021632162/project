@@ -4,7 +4,7 @@
   <section class="hero is-primary is-bold">
       <div class="container"><br>
         <h1 class="title is-1" style="font-family: 'Seymour One', sans-serif;">
-          W a s h
+       W a s h
           <h2 class="is-pulled-right">
               <img class="image is-64x64" @click = "logout()" src="../assets/logout3.png">
           </h2>
@@ -12,6 +12,7 @@
         <br>
       </div>
   </section>
+
   <!--  จบ แทปฟ้า -->
 <br>
   <div class="tabs is-centered is-boxed is-medium">
@@ -113,11 +114,10 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style >
 .table1{
   width: 80%;
   margin-left: 10%;
-
 }
 
 

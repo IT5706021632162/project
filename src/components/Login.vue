@@ -1,34 +1,52 @@
 <template>
   <div class="login">
-      <div class="tile is-ancestor">
-        <div class="tile is-vertical is-8">
-          <div class="tile">
-          <div class="tile is-parent">
-          <article class="tile is-child notification is-danger">
-          <figure class="image is-16by9">
-          </br>
-            <img src="../assets/aaa.gif">
-            </br>
-          </figure>
-          </article>
-          </div>
-          </div>
-        </div>
-
-        <div class="tile is-parent">
-          <article class="tile is-child notification is-warning">
+      <div class="hero is-medium is-primary is-bold">
             <div class="content"></br></br>
-            <p class="title">W e l c o m e   !</p> </br></br>
+            <p class="title" style="font-family: 'Russo One', sans-serif;">W e l c o m e   !</p>
+            <figure>
+            <br>
+              <img src="../assets/logo1.gif">
+            <br>
+            </figure>
             <div class="login1" @keyup.enter="signIn()">
-                <div class="tile is-ancestor">
+              <div class="columns">
+        <div class="column">
+        </div>
+        <div class="column">
+          <article class="tile is-child  ">
+
+            <div class="field">
+              <div class="control">
+                <label class="label" >E-mail
+                    <input  class="input" type="email" v-model="email"  placeholder="E-mail">
+                </label>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                <label class="label" >Password
+                    <input class="input" type="password" v-model="password"  placeholder="Password">
+                </label>
+              </div>
+            </div>
+
+                <a class="button is-white is-outlined"> <span class="icon is-small"> <i class="fa fa-sign-in"></i>  </span>    <span @click="signIn()">Login</span>
+              </a> <br><br><br><br><br>
+          </article>
+        </div>
+        <div class="column">
+        </div>
+      </div>
+
+                <!-- <div class="tile is-ancestor">
                   <div class="tile is-vertical is-8">
                     <div class="tile">
                         <div class="tile is-parent">
                           <article class="tile is-child box">
-
                             <div class="field"></br>
                               <p class="control has-icons-left has-icons-right">
-                                <input class="input" type="email" v-model="email" placeholder="Email">
+
                                 <span class="icon is-small is-left">
                                   <i class="fa fa-envelope"></i>
                                 </span>
@@ -49,18 +67,15 @@
                             </br>
                                 <a class="button is-info is-outlined"> <span class="icon is-small"> <i class="fa fa-sign-in"></i>  </span>    <span @click="signIn()">Login</span>
                               </a>
-
                           </article>
                         </div>
                     </div>
                   </div>
-                </div>
-            </div>
+                </div> -->
 
             </div>
-          </article>
-        </div>
-
+<br><br><br><br><br><br><br><br><br><br><br>
+            </div>
       </div>
 </div>
 
@@ -96,17 +111,25 @@
 <style scoped>  /* "scoped" attribute limit the CSS to this component only */
   .login {
     text-align: center;
-    margin-top: 25px;
     height: 100%;
     width:  100%;
   /*  background-color: red;*/
   }
-.login1{
+/* .login1{
   width:  150%;
+} */
+.label{
+  color: #FFFFFF;
 }
+
 input[type=email], input[type='password']  {
-    border: none;
-    border-bottom: 1px solid #F2C45A;
-    width:  90%;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  border: 1px solid #FFFFFF;
+  background-color: #624ec1;
+  color: #FFFFFF;
 }
 </style>
