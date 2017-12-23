@@ -82,32 +82,24 @@
 </ul>
 
 </div>
-
-
-
 <!-- จบ เมนูย่อย เครดิต -->
+
 
 <!--  ตาราง user เครดิต -->
 
   <div  class="table1" >
-  <!--  ตาราง user เครดิต -->
-  <table class="table" v-if= " type === 'addcredit'" >
+
+  <table class="table is-hoverable" v-if= " type === 'addcredit'" >
     <thead>
       <tr>
-
         <th scope="col">E-mail</th>
-        <th scope="col">Date</th>
-        <th scope="col">Time</th>
         <th scope="col">Photo</th>
         <th scope="col">Status</th>
       </tr>
     </thead>
       <tbody v-for = " (Users, key, count) in showimage"  >
-        <tr   v-if= "Users.status === 'waiting for approve'">
-
+        <tr   v-if= "Users.status === 'Waiting for Approve'">
           <td>  {{Users.email}}  </td>
-          <td>  {{Users.Date}}  </td>
-          <td>  {{Users.Time}}  </td>
           <td width="17%">
               <img data-toggle="modal" :data-target="'#'+key" class="image is-128x128" v-bind:src="Users.url"/>
             <div :id="key" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -124,16 +116,14 @@
           </td>
             <td> <br><br> <span class="tag is-danger">{{Users.status}}</span>    </td>
             <td> <br><br> <a class="btn btn-primary" data-toggle="collapse" :href="'#'+Users.uid" aria-expanded="true" aria-controls="collapseExample"  @click="keyimage(key)">Approved </a></td>
-  </a>
-          <tr>
-              <td colspan="7">
-                    <div   v-for = " (User, key, count) in showusers"  v-if= "Users.status === 'waiting for approve'">
+          <tr v-if= "Users.status === 'Waiting for Approve'">
+              <td colspan="4">
+                    <div   v-for = " (User, key, count) in showusers"  >
                       <div class="collapse" :id="User.id">
                         <div class="card card-body">
                           <table>
                               <thead>
                                 <tr>
-
                                   <th scope="col">E-mail</th>
                                   <th scope="col">Money</th>
                                   <th scope="col">Addmoney</th>
@@ -158,13 +148,11 @@
       </tbody>
   </table>
   <!-- ------------------------------------ -->
-  <table class="table" v-if= " type === 'creditcenter'" >
+  <table class="table" v-if= " type === 'Success Approve'" >
     <thead>
       <tr>
 
         <th scope="col">E-mail</th>
-        <th scope="col">Date</th>
-        <th scope="col">Time</th>
         <th scope="col">Photo</th>
         <th scope="col">Status</th>
       </tr>
@@ -173,8 +161,6 @@
         <tr   v-if= "Users.status === 'Approved'">
 
           <td>  {{Users.email}}  </td>
-          <td>  {{Users.Date}}  </td>
-          <td>  {{Users.Time}}  </td>
           <td width="17%">
             <img data-toggle="modal" :data-target="'#'+key" class="image is-128x128" v-bind:src="Users.url"/>
           <div :id="key" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -354,7 +340,7 @@ export default {
       this.type = 'credit'
     },
     Add_credit_center: function () {
-      this.type = 'creditcenter'
+      this.type = 'Success Approve'
     },
     status: function (key) {
       this.status = key

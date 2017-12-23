@@ -100,7 +100,14 @@
             this.$router.replace('home1')
           },
           (err) => {
-            alert('Oops. ' + err.message)
+            this.$dialog.alert({
+              title: 'Error',
+              message: 'Please enter the money.</br> ' + err.message + '<br><b>Please try again. </b> ',
+              type: 'is-danger',
+              hasIcon: true,
+              icon: 'times-circle',
+              iconPack: 'fa'
+            })
           }
         )
       }
@@ -127,7 +134,6 @@ input[type=email], input[type='password']  {
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
-  border: none;
   border: 1px solid #FFFFFF;
   background-color: #624ec1;
   color: #FFFFFF;
