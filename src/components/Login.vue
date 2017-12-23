@@ -2,7 +2,7 @@
   <div class="login">
       <div class="hero is-medium is-primary is-bold">
             <div class="content"></br></br>
-            <p class="title" style="font-family: 'Russo One', sans-serif;">W e l c o m e   !</p>
+              <h1 class="title is-1" style="font-family:  'Russo One', sans-serif;" >W A S H </h1>
             <figure>
             <br>
               <img src="../assets/logo1.gif">
