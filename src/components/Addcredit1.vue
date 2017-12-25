@@ -97,7 +97,7 @@
         <th scope="col">Status</th>
       </tr>
     </thead>
-      <tbody v-for = " (Users, key, count) in showimage"  >
+      <tbody  v-for = " (Users, key, count) in showimage"  >
         <tr   v-if= "Users.status === 'Waiting for Approve'">
           <td>  {{Users.email}}  </td>
           <td width="17%">
@@ -111,42 +111,42 @@
                 </div>
               </div>
             </div>
-            <!-- <a class="lightbox" :href="'#'+key"><img class="image is-128x128" v-bind:src="Users.url"/></a>
-              <div class="lightbox-target" :id="key"><a class="lightbox-close" href="#"></a></div> -->
           </td>
             <td> <br><br> <span class="tag is-danger">{{Users.status}}</span>    </td>
-            <td> <br><br> <a class="btn btn-primary" data-toggle="collapse" :href="'#'+Users.uid" aria-expanded="true" aria-controls="collapseExample"  @click="keyimage(key)">Approved </a></td>
-          <tr v-if= "Users.status === 'Waiting for Approve'">
-              <td colspan="4">
-                    <div   v-for = " (User, key, count) in showusers"  >
-                      <div class="collapse" :id="User.id">
-                        <div class="card card-body">
-                          <table>
-                              <thead>
-                                <tr>
-                                  <th scope="col">E-mail</th>
-                                  <th scope="col">Money</th>
-                                  <th scope="col">Addmoney</th>
-                                   <!-- <th scope="col">Edit money</th> -->
-                                </tr>
-                                <tr>
-
-                                  <td>  {{User.email}}</td>
-                                  <td>  {{User.money}}</td>
-                                  <td>  <input type="number" class="button" name="" value="" v-model="addmoney"> </td>
-                                  <td>  <button type="button" class="button is-info is-outlined" name="buttonAdd" @click="update(key,Users.key,User.money,addmoney,User.email,User.id,User.name)" >Submit</button>  </td>
-                                  <td>   <a class="btn btn-danger" data-toggle="collapse" :href="'#'+User.id" aria-expanded="false" aria-controls="collapseExample"> Cancel </a> </td>
-                                </tr>
-                              </thead>
-                          </table>
-                        </div>
-                      </div>
-                    </div>  <br>
-              </td>
-          </tr>
+            <td> <br><br>   <a type="button" class="btn btn-primary" data-toggle="modal" :href="'#'+Users.uid"  @click="keyimage(key)">Approved  </a>
+               <div   v-for = " (User, key, count) in showusers"  >
+                 <div class="modal fade" :id="User.id" tabindex="-1" role="dialog"  :href="'#'+Users.uid" aria-hidden="true">
+                   <div class="modal-dialog" role="document">
+                     <div class="modal-content">
+                       <div class="modal-header">
+                         <h5 class="modal-title" :id="User.id"><i class="fa fa-money" aria-hidden="true"></i> Add credit (<b>{{User.email}}</b>)</h5>
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                         </button>
+                       </div>
+                       <div class="modal-body">
+                          Do you want to add money <input type="number" min="0" max="1000" class="button" name="" value="0" v-model="addmoney"> Bath
+                       </div>
+                       <div class="modal-footer">
+                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                         <button type="button" class="btn btn-primary" data-dismiss="modal" @click="update(key,Users.key,User.money,addmoney,User.email,User.id,User.name)" >Submit</button>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </td>
      </tr>
       </tbody>
   </table>
+  <!-- Modal -->
+
+
+
+
+
+
+
   <!-- ------------------------------------ -->
   <table class="table" v-if= " type === 'Success Approve'" >
     <thead>
@@ -202,7 +202,7 @@
 
   </div>
 <!-- จบ ตาราง user เครดิต -->
-
+<!-- Button trigger modal -->
  </div>
 </template>
 
@@ -214,6 +214,7 @@ export default {
   data () {
     return {
       mail: '',
+      input: 'show',
       status: '',
       data: {
         name: '',
@@ -267,10 +268,10 @@ export default {
       console.log(key)
       console.log(this.keyimage)
       money = +money + +addmoney
-      if (addmoney > 0) {
+      if (addmoney > 0 && addmoney <= 1000) {
         this.$dialog.confirm({
           title: 'Add Credit',
-          message: 'Are you sure you want to <u>Add Credit </u> </br><b> ' + mail + ' </br>  Money : ' + addmoney + '  Bath.</b>',
+          message: 'Are you sure you want to <u>Add Credit </u> </br><b> ' + mail + ' </br> <h3> Money : ' + addmoney + '  Bath.</h3></b>',
           confirmText: 'Confirm',
           type: 'is-success',
           hasIcon: true,
@@ -312,7 +313,7 @@ export default {
       } else {
         this.$dialog.alert({
           title: 'Error',
-          message: 'Please enter the money.</br> <b>Please try again. </b> ',
+          message: 'Please enter the money 1-1000 bath</br> <b>Please try again. </b> ',
           type: 'is-danger',
           hasIcon: true,
           icon: 'times-circle',
