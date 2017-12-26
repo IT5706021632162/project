@@ -194,7 +194,17 @@
             <td>  {{count+1}}  </td>
            <td>  {{User.email}}  </td>
            <td> {{User.money}}</td>
-           <!-- <td><button type="button" class="button is-danger is-outlined" name="buttonAdd" @click="swap(key)" >Edit money</button> </td> -->
+           <td><button type="button" class="button is-link " name="buttonAdd" @click="swap(key)" >Edit money</button> </td>
+
+         </tr>
+       </tbody>
+       <tbody v-else >
+         <tr >
+            <td>  {{count+1}}  </td>
+           <td>  {{User.email}}  </td>
+           <td> <input type="number" name=""  v-model="User.money"></td>
+           <td> <button type="button" class="button button is-success " name="buttonAdd" @click="Editmoney(key,User.money,User.email)" >Save money</button> </td>
+           <td> <button type="button" class="button is-danger" name="buttonAdd" @click="cancel()" >Cancel</button> </td>
 
          </tr>
        </tbody>
@@ -227,7 +237,8 @@ export default {
       checkEdit1: '',
       type: 'addcredit',
       img: this.$route.params.img,
-      keyimage1: ''
+      keyimage1: '',
+      addEditmoney: 0
     }
   },
   created: function () { /* แสดงชื่อ Admin */
@@ -325,7 +336,7 @@ export default {
       this.addmoney = 0
       this.pullData()
     },
-    cancel: function (key, money) {
+    cancel: function () {
       this.checkEdit = ''
     },
     swap: function (key) {
@@ -350,6 +361,36 @@ export default {
       console.log('pass')
       console.log(key)
       this.keyimage1 = key
+    },
+    Editmoney: function (key, addEditmoney, email) {
+      console.log('passdsa')
+      this.checkEdit = ''
+      if (addEditmoney > 0 && addEditmoney <= 1000) {
+        this.$dialog.confirm({
+          title: 'Edit Credit',
+          message: 'Are you sure you want to <u>Edit Credit </u> </br><b> ' + email + ' </br> <h3> Money : ' + addEditmoney + '  Bath.</h3></b>',
+          confirmText: 'Confirm',
+          type: 'is-success',
+          hasIcon: true,
+          onConfirm: () => {
+            firebase.database().ref('/users/').child(key).update({
+              money: addEditmoney
+            })
+            this.pullData()
+          }
+        })
+      } else {
+        this.$dialog.alert({
+          title: 'Error',
+          message: 'Please enter the money 1-1000 bath</br> <b>Please try again. </b> ',
+          type: 'is-danger',
+          hasIcon: true,
+          icon: 'times-circle',
+          iconPack: 'fa'
+        })
+        this.pullData()
+      }
+      this.pullData()
     }
   }
 }

@@ -8,13 +8,12 @@
               <img src="../assets/logo1.gif">
             <br>
             </figure>
-            <div class="login1" @keyup.enter="signIn()">
+            <div class="login1" @keyup.enter="signIn()"> <!-- enter เข้าระบบ -->
               <div class="columns">
         <div class="column">
         </div>
         <div class="column">
-          <article class="tile is-child  ">
-
+          <article class="tile is-child">
             <div class="field">
               <div class="control">
                 <label class="label" >E-mail
@@ -22,65 +21,26 @@
                 </label>
               </div>
             </div>
-
             <div class="field">
               <div class="control">
-                <label class="label" >Password
+                <label class="label">Password
                     <input class="input" type="password" v-model="password"  placeholder="Password">
                 </label>
               </div>
             </div>
-
                 <a class="button is-white is-outlined"> <span class="icon is-small"> <i class="fa fa-sign-in"></i>  </span>    <span @click="signIn()">Login</span>
-              </a> <br><br><br><br><br>
+              </a> <br><br><br>
           </article>
         </div>
         <div class="column">
         </div>
       </div>
-
-                <!-- <div class="tile is-ancestor">
-                  <div class="tile is-vertical is-8">
-                    <div class="tile">
-                        <div class="tile is-parent">
-                          <article class="tile is-child box">
-                            <div class="field"></br>
-                              <p class="control has-icons-left has-icons-right">
-
-                                <span class="icon is-small is-left">
-                                  <i class="fa fa-envelope"></i>
-                                </span>
-                                <span class="icon is-small is-right">
-                                </span>
-                              </p>
-                            </div>
-
-                            <div class="field">
-                              <p class="control has-icons-left">
-                                <input class="input" type="password" v-model="password"  placeholder="Password">
-                                <span class="icon is-small is-left">
-                                  <i class="fa fa-lock"></i>
-                                </span>
-                              </p>
-                            </div>
-
-                            </br>
-                                <a class="button is-info is-outlined"> <span class="icon is-small"> <i class="fa fa-sign-in"></i>  </span>    <span @click="signIn()">Login</span>
-                              </a>
-                          </article>
-                        </div>
-                    </div>
-                  </div>
-                </div> -->
-
-            </div>
+        </div>
 <br><br><br><br><br><br><br><br><br><br><br>
             </div>
       </div>
 </div>
-
 </template>
-
 <script>
   import firebase from 'firebase'
   export default {
