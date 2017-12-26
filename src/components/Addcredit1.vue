@@ -48,27 +48,6 @@
 
 <!--  เมนูย่อย เครดิต -->
 <div class="tabs is-fullwidth">
-  <!-- <ul>
-    <li v-on:click="credit_left()" >
-      <a >
-        <span class="icon"><i class="fa fa-angle-left"></i></span>
-        <span >Add Credit</span>
-      </a>
-    </li>
-    <li v-on:click="Add_credit_center()" >
-      <a>
-        <span>Status Approve </span>
-        <span class="icon"><i class="fa fa-angle-up"></i></span>
-      </a>
-    </li>
-    <li v-on:click="Add_credit_right()" >
-      <a>
-        <span>Credit</span>
-        <span class="icon"><i class="fa fa-angle-right"></i></span>
-      </a>
-    </li>
-  </ul> -->
-
   <ul class="nav nav-pills mb-3"  role="tablist">
   <li class="nav-item" v-on:click="credit_left()">
     <a class="btn-light active"  data-toggle="pill"   aria-controls="pills-home" aria-selected="true">Add Credit</a>
@@ -140,11 +119,6 @@
       </tbody>
   </table>
   <!-- Modal -->
-
-
-
-
-
 
 
   <!-- ------------------------------------ -->
