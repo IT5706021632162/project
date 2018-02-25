@@ -4,7 +4,7 @@
     <section class="hero is-primary is-bold">
         <div class="container"><br>
           <h1 class="title is-1" style="font-family: 'Seymour One', sans-serif;">
-         W a s h
+         W a s h  {{this.admin}}
             <h2 class="is-pulled-right">
                 <img class="image is-64x64" @click = "logout()" src="../assets/logout3.png">
             </h2>
@@ -45,60 +45,75 @@
 </div>
 <!--  จบ เมนู -->
 <!--  เริ่ม addd user -->
-<!-- Main container -->
-<nav class="level-item">
-  <!-- Left side -->
-  <div class="level-left">
-    <div class="level-item">
-    </div>
-    <div class="level-item">
-      <div class="field has-addons">
-        <p class="control">
-          <input class="input" type="email"  v-model="email"  placeholder="E-mail">
-        </p>
-        <p class="control">
-          <input class="input" type="password"  v-model="password" placeholder="Password">
-        </p>
-        <p class="control">
-          <button class="button is-primary is-outlined"  @click="add()" >
-            Add
-          </button>
-        </p>
+<div class="columns">
+  <div class="column"></div>
+  <div class="is-half">
+        <article class="message is-info">
+          <div class="message-header">
+             <span  class="fa fa-user-plus">&nbsp;Add Admin</span>
+          </div>
+          <div class="message-body">
 
-      </div>
-    </div>
+            <!-- Main container -->
+            <nav class="level-item">
+              <!-- Left side -->
+              <div class="level-left">
+                <div class="level-item">
+                </div>
+                <div class="level-item">
+                  <div class="field has-addons">
+                    <p class="control">
+                      <input class="input" type="email"  v-model="email"  placeholder="E-mail">
+                    </p>
+                    <p class="control">
+                      <input class="input" type="password"  v-model="password" placeholder="Password">
+                    </p>
+                    <p class="control">
+                      <button class="button is-primary is-outlined"  @click="add()" >
+                        Add
+                      </button>
+                    </p>
+
+                  </div>
+                </div>
+              </div>
+            </nav>
+            <!--  จบ addd user -->
+
+          </div>
+        </article>
   </div>
-</nav>
-<!--  จบ addd user -->
-
-
-<!--  ตาราง user  -->
-<div  class="table1" >
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">E-mail</th>
-      <th scope="col">Password</th>
-      <th scope="col">Delete Account</th>
-    </tr>
-  </thead>
-    <tbody class="" v-for = " (admin, key, count) in showAdmin">
-      <tr>
-        <td>  {{count+1}}  </td>
-        <td> {{admin.email}} </td>
-        <td> {{admin.password}}  </td>
-        <td>
-          <a class="button is-danger is-outlined"><span  @click="remove(key,admin.email)" >Delete</span><span class="icon is-small">  <i class="fa fa-times"></i></span></a>
-        </td>
-      </tr>
-    </tbody>
-
-</table>
-
+  <div class="column"></div>
 </div>
-<!-- จบ ตาราง user  -->
 
+
+
+            <!--  ตาราง user  -->
+            <div  class="table1" >
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">E-mail</th>
+                  <th scope="col">Password</th>
+                  <th scope="col">Delete Account</th>
+                </tr>
+              </thead>
+                <tbody class="" v-for = " (admin, key, count) in showAdmin">
+                  <tr>
+                    <td>  {{count+1}}  </td>
+                    <td> {{admin.email}} </td>
+                    <td> {{admin.password}}  </td>
+                    <td>
+                      <a class="button is-danger is-outlined"><span  @click="remove(key,admin.email)" >Delete</span><span class="icon is-small">  <i class="fa fa-times"></i></span></a>
+                    </td>
+                  </tr>
+                </tbody>
+
+            </table>
+
+            </div>
+            <!-- จบ ตาราง user  -->
 
  </div>
 </template>
@@ -120,8 +135,10 @@ export default {
   },
   created: function () { /* แสดงชื่อ Admin */
     var user = firebase.auth().currentUser
-    if (user != null) {
+    if (user) {
       this.admin = user.email
+    } else {
+      alert('Oops. ')
     }
     this.pullData()
   },

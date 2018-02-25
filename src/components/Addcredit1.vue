@@ -148,6 +148,7 @@
           </div>
           </td>
             <td> <br><br> <span class="tag is-success">{{Users.status}}</span>    </td>
+            <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
             <!-- <td> <br><br> <a class="btn btn-primary" data-toggle="collapse" :href="'#'+Users.uid" aria-expanded="false" aria-controls="collapseExample"> Approved </a></td> -->
   </a>
      </tr>

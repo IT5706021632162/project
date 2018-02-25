@@ -1,11 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home'
 import Login from '@/components/Login'
 import firebase from 'firebase'
-import addadmin from '@/components/addadmin'
-import Addusercredit from '@/components/Add_user_credit'
-import EarningsRevenue from '@/components/Earnings_Revenue'
 import home1 from '@/components/home1'
 import Addcredit1 from '@/components/Addcredit1'
 import addadmin1 from '@/components/addadmin1'
@@ -18,38 +14,6 @@ let router = new Router({
       path: '/',
       name: 'Login',
       component: Login
-    },
-    {
-      path: '/home',
-      name: 'Home',
-      component: Home,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/addadmin',
-      name: 'addadmin',
-      component: addadmin,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/Add_user_credit',
-      name: 'Add_user_credit',
-      component: Addusercredit,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/Earnings_Revenue',
-      name: 'Earnings_Revenue',
-      component: EarningsRevenue,
-      meta: {
-        requiresAuth: true
-      }
     },
     {
       path: '/Earnings_Revenue1',
