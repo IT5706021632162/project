@@ -28,7 +28,12 @@
                 </label>
               </div>
             </div>
-                <a class="button is-white is-outlined"> <span class="icon is-small"> <i class="fa fa-sign-in"></i>  </span>    <span @click="signIn()">Login</span>
+            <div class="" v-for = " (admin, key, count) in showAdmin">
+              <div v-if="email === admin.email ">
+                {{admin.email}}
+              </div>
+          </div>
+                <a class="button is-white is-outlined"> <span class="icon is-small"> <i class="fa fa-sign-in"></i>  </span>    <span @click="signIn(admin.email)">Login</span>
               </a> <br><br><br>
           </article>
         </div>
@@ -36,6 +41,7 @@
         </div>
       </div>
         </div>
+
 <br><br><br><br><br><br><br><br><br><br><br>
             </div>
       </div>
@@ -50,24 +56,53 @@
         data: {
           email: '',
           password: ''
-        }
+        },
+        showAdmin: '',
+        ma: ''
       }
     },
+    created: function () {
+      this.pullData()
+    },
     methods: {
-      signIn: function () {
+      pullData: function () {
+        let that = this
+        firebase.database().ref('/Admin/').once('value').then(function (snapshot) {
+          that.showAdmin = snapshot.val()
+        })
+      },
+      signIn: function (dbadmin) {
         firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
           (user) => {
             this.$router.replace('home1')
           },
           (err) => {
-            this.$dialog.alert({
-              title: 'Error',
-              message: 'Opps. ' + err.message,
-              type: 'is-danger',
-              hasIcon: true,
-              icon: 'times-circle',
-              iconPack: 'fa'
-            })
+            // alert('Oops. ' + err.message)
+            for (var mai in this.showAdmin) {
+              if (this.email === this.showAdmin[mai].email) {
+                this.ma = 'true'
+              }
+            }
+            if (this.ma === 'true') {
+              firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
+                (user) => {
+                  firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
+                    (user) => {
+                      this.$router.replace('home1')
+                    }
+                  )
+                }
+              )//
+            } else {
+              this.$dialog.alert({
+                title: 'Error',
+                message: 'Opps. ' + err.message,
+                type: 'is-danger',
+                hasIcon: true,
+                icon: 'times-circle',
+                iconPack: 'fa'
+              })
+            }
           }
         )
       }
@@ -88,7 +123,6 @@
 .label{
   color: #FFFFFF;
 }
-
 input[type=email], input[type='password']  {
   width: 100%;
   padding: 12px 20px;
