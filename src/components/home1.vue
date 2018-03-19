@@ -1,69 +1,81 @@
 <template >
   <div class="home">
     <!--  แทปฟ้า -->
-  <section class="hero is-primary is-bold">
-      <div class="container"><br>
-        <h1 class="title is-1" style="font-family: 'Seymour One', sans-serif;">
-       W a s h
-          <h2 class="is-pulled-right">
-              <img class="image is-64x64" @click = "logout()" src="../assets/logout3.png">
-          </h2>
-        </h1>
-        <br>
-      </div>
-  </section>
+    <section class="hero is-primary is-bold">
+        <div class="container"><br>
+            <h1 class="title is-1" style="font-family: 'Seymour One', sans-serif;">
+                W a s h
 
+              <h2 class="is-pulled-right">
+                  <img class="image is-64x64" @click = "logout()" src="../assets/logout3.png">
+              </h2>
+
+            </h1>
+            <label for="recipient-name" class="form-control-label"> Admin : {{this.user}}</label>
+            <br>
+        </div>
+    </section>
   <!--  จบ แทปฟ้า -->
-<br>
-  <div class="tabs is-centered is-boxed is-medium">
-  <ul>
-    <li class="is-active">
-      <a >
-        <span class="icon is-small"><i class="fa fa-users"></i></span>
-        <span v-on:click="home()">MEMBER</span>
-      </a>
-    </li>
-    <li>
-      <a>
-        <span class="icon is-small"><i class="fa fa-user-plus"></i></span>
-        <span v-on:click="addadmin()" >Add admin</span>
-      </a>
-    </li>
-    <li >
-      <a>
-        <span class="icon is-small"><i class="fa fa-money"></i></span>
-        <span  v-on:click="Add_user_credit()" >Add user credit</span>
-      </a>
-    </li>
-    <li>
-      <a>
-        <span class="icon is-small"><i class="fa fa-pie-chart"></i></span>
-        <span  v-on:click="Earnings_Revenue()">Earnings Revenue</span>
-      </a>
-    </li>
-  </ul>
-</div>
-<div  class="table1" >
-<table class="table" >
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-     <th scope="col">Name</th>
-     <th scope="col">E-mail</th>
-      <th scope="col">Credit</th>
-    </tr>
-  </thead>
-    <tbody  v-for = " (users, key, count) in showusers">
-      <tr>
-        <td>  {{count+1}}  </td>
-        <td>  {{users.name}}  </td>
-        <td>  {{users.email}} </td>
-        <td>  {{users.money}} Bath </td>
-      </tr>
-    </tbody>
 
-</table>
-</div>
+<br>
+
+  <!--  แทปเมนูต่างๆ -->
+    <div class="tabs is-centered is-boxed is-medium">
+      <ul>
+          <li class="is-active">
+            <a>
+              <span class="icon is-small"><i class="fa fa-users"></i></span>
+              <span v-on:click="home()">MEMBER</span>
+            </a>
+          </li>
+
+          <li>
+            <a>
+              <span class="icon is-small"><i class="fa fa-user-plus"></i></span>
+              <span v-on:click="addadmin()" >Add admin</span>
+            </a>
+          </li>
+
+          <li>
+            <a>
+              <span class="icon is-small"><i class="fa fa-money"></i></span>
+              <span  v-on:click="Add_user_credit()" >Add user credit</span>
+            </a>
+          </li>
+
+          <li>
+            <a>
+              <span class="icon is-small"><i class="fa fa-pie-chart"></i></span>
+              <span  v-on:click="Earnings_Revenue()">Earnings Revenue</span>
+            </a>
+          </li>
+      </ul>
+    </div>
+    <!-- จบ แทปเมนูต่างๆ -->
+
+      <!-- แสดงตาราง member ผู้ใช้บริการทั้งหมด -->
+      <div  class="tablemember" >
+        <table class="table" >
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">E-mail</th>
+              <th scope="col">Credit</th>
+            </tr>
+          </thead>
+            <tbody  v-for = " (users, key, count) in showusers">
+              <tr>
+                <td>  {{count+1}}  </td>
+                <td>  {{users.name}}  </td>
+                <td>  {{users.email}} </td>
+                <td>  {{users.money}} Bath </td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+      <!-- จบ แสดงตาราง member ผู้ใช้บริการทั้งหมด -->
+      
  </div>
 </template>
 
@@ -81,11 +93,13 @@ export default {
   },
   created: function () { /* แสดงชื่อ Admin */
     var user = firebase.auth().currentUser
-    if (user != null) {
-      this.admin = user.email
+    if (user) {
+      this.user = user.email
+    } else {
+      alert('Oops. ')
     }
     this.pullData()
-  },  /* จบ แสดงชื่อ Admin */
+  },
   methods: {
     pullData: function () {   /* แสดงชือตาราง User ทั้งหมด */
       let that = this
@@ -115,8 +129,8 @@ export default {
 </script>
 
 <style >
-.table1{
-  width: 80%;
-  margin-left: 10%;
+.tablemember{
+  width: 55%;
+  margin-left: 23%;
 }
 </style>

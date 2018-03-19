@@ -3,64 +3,78 @@
     <!--  แทปฟ้า -->
     <section class="hero is-primary is-bold">
         <div class="container"><br>
-          <h1 class="title is-1" style="font-family: 'Seymour One', sans-serif;">
-         W a s h
-            <h2 class="is-pulled-right">
-                <img class="image is-64x64" @click = "logout()" src="../assets/logout3.png">
-            </h2>
-          </h1>
-          <br>
+            <h1 class="title is-1" style="font-family: 'Seymour One', sans-serif;">
+                W a s h
+
+              <h2 class="is-pulled-right">
+                  <img class="image is-64x64" @click = "logout()" src="../assets/logout3.png">
+              </h2>
+
+            </h1>
+            <label for="recipient-name" class="form-control-label"> Admin : {{this.user}}</label>
+            <br>
         </div>
     </section>
   <!--  จบ แทปฟ้า -->
 <br>
-<!--  เมนู -->
-<div class="tabs is-centered is-boxed is-medium">
-<ul >
-  <li>
-    <a >
-      <span class="icon is-small"><i class="fa fa-users"></i></span>
-      <span v-on:click="home()">MEMBER</span>
-    </a>
-  </li>
-  <li>
-    <a>
-      <span class="icon is-small"><i class="fa fa-user-plus"></i></span>
-      <span v-on:click="addadmin()" >Add admin</span>
-    </a>
-  </li>
-  <li class="is-active">
-    <a>
-      <span class="icon is-small"><i class="fa fa-money"></i></span>
-      <span  v-on:click="Add_user_credit()" >Add user credit</span>
-    </a>
-  </li>
-  <li >
-    <a>
-      <span class="icon is-small"><i class="fa fa-pie-chart"></i></span>
-      <span v-on:click="Earnings_Revenue()">Earnings Revenue</span>
-    </a>
-  </li>
-</ul>
-</div>
+    <!--  แทปเมนูต่างๆ -->
+      <div class="tabs is-centered is-boxed is-medium">
+        <ul>
+            <li>
+              <a>
+                <span class="icon is-small"><i class="fa fa-users"></i></span>
+                <span v-on:click="home()">MEMBER</span>
+              </a>
+            </li>
 
-<!--  จบ เมนู -->
+            <li>
+              <a>
+                <span class="icon is-small"><i class="fa fa-user-plus"></i></span>
+                <span v-on:click="addadmin()" >Add admin</span>
+              </a>
+            </li>
+
+            <li class="is-active">
+              <a>
+                <span class="icon is-small"><i class="fa fa-money"></i></span>
+                <span  v-on:click="Add_user_credit()" >Add user credit</span>
+              </a>
+            </li>
+
+            <li>
+              <a>
+                <span class="icon is-small"><i class="fa fa-pie-chart"></i></span>
+                <span  v-on:click="Earnings_Revenue()">Earnings Revenue</span>
+              </a>
+            </li>
+        </ul>
+      </div>
+      <!-- จบ แทปเมนูต่างๆ -->
 
 <!--  เมนูย่อย เครดิต -->
-<div class="tabs is-fullwidth">
-  <ul class="nav nav-pills mb-3"  role="tablist">
-  <li class="nav-item" v-on:click="credit_left()">
-    <a class="btn-light active"  data-toggle="pill"   aria-controls="pills-home" aria-selected="true">Add Credit</a>
-  </li>
-  <li class="nav-item" v-on:click="Add_credit_center()" >
-    <a class="btn-light"  data-toggle="pill"   aria-controls="pills-profile" aria-selected="false">Success Approve</a>
-  </li>
-  <li class="nav-item" v-on:click="Add_credit_right()">
-    <a class="btn-light"  data-toggle="pill"   aria-controls="pills-contact" aria-selected="false">Credit</a>
-  </li>
-</ul>
+  <div class="columns">
+    <div class="column"></div>
+      <div class="column is-four-fifths">
+        <div class="tabs is-fullwidth">
 
-</div>
+            <ul class="nav nav-pills mb-3"  role="tablist">
+              <li class="nav-item" v-on:click="credit_left()">
+                <a class="btn-light active"  data-toggle="pill"   aria-controls="pills-home" aria-selected="true">Add Credit</a>
+              </li>
+
+              <li class="nav-item" v-on:click="Add_credit_center()" >
+                <a class="btn-light"  data-toggle="pill"   aria-controls="pills-profile" aria-selected="false">Success Approve</a>
+              </li>
+
+              <li class="nav-item" v-on:click="Add_credit_right()">
+                <a class="btn-light"  data-toggle="pill"   aria-controls="pills-contact" aria-selected="false">Credit</a>
+              </li>
+            </ul>
+
+        </div>
+      </div>
+    <div class="column"></div>
+  </div>
 <!-- จบ เมนูย่อย เครดิต -->
 
 
@@ -218,8 +232,10 @@ export default {
   },
   created: function () { /* แสดงชื่อ Admin */
     var user = firebase.auth().currentUser
-    if (user != null) {
-      this.admin = user.email
+    if (user) {
+      this.user = user.email
+    } else {
+      alert('Oops. ')
     }
     this.pullData()
   },
