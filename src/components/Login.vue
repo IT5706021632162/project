@@ -76,7 +76,7 @@
           (err) => {
             // alert('Oops. ' + err.message)
             for (var mai in this.showAdmin) {
-              if (this.email === this.showAdmin[mai].email) {
+              if (this.email === this.showAdmin[mai].email && this.password === this.showAdmin[mai].password) {
                 this.ma = 'true'
               }
             }
@@ -113,7 +113,7 @@
     height: 100%;
     width:  100%;
   }
-  
+
 
 .label{
   color: #FFFFFF;

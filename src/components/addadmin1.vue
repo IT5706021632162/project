@@ -99,7 +99,7 @@
                                           <form>
                                             <div class="form-group">
                                               <label for="recipient-name" class="form-control-label">Confirm Password : {{this.accountemail}}</label><br>
-                                               <input type="text" class="form-control" id="recipient-name" v-model="confirmpassword">
+                                               <input type="password" class="form-control" id="recipient-name" v-model="confirmpassword">
                                             </div>
                                           </form>
                                         </div>
@@ -108,7 +108,7 @@
                                           <div  v-for = " (admin, key, count) in showAdmin">
                                             <p v-if ="admin.email === user ">
                                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                              <button type="button" class="btn btn-primary"  @click="add(key)">confirm</button>
+                                              <button type="button" class="btn btn-primary"  data-dismiss="modal" @click="add(key)">confirm</button>
                                             </p>
                                           </div>
                                         </div>
@@ -163,7 +163,7 @@
                                 <form>
                                   <div class="form-group">
                                     <label for="recipient-name" class="form-control-label">Confirm Password :</label>
-                                    <input type="text" class="form-control" id="recipient-name" v-model="confirmpassword">
+                                    <input type="password" class="form-control" id="recipient-name" v-model="confirmpassword">
                                   </div>
                                 </form>
                             </div>
@@ -171,8 +171,8 @@
                             <div class="modal-footer">
                               <div  v-for = " (admin, key, count) in showAdmin">
                                 <p v-if ="admin.email === user ">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                  <button type="button" class="btn btn-primary"  @click="remove(key)">confirm</button>
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
+                                  <button type="button" class="btn btn-primary" data-dismiss="modal" @click="remove(key)">confirm</button>
                                 </p>
                               </div>
                             </div>
@@ -216,7 +216,6 @@
             </table>
          </div>
               <!--  แสดงตารางชื่อ Admin ทั้งหมด  -->
-
  </div>
 </template>
 
@@ -285,6 +284,16 @@ export default {
         this.pullData()
         this.email = ''
         this.password = ''
+        this.confirmpassword = ''
+      } else {
+        this.$dialog.alert({
+          title: 'Error',
+          message: 'Incorrect. Enter your password again.',
+          type: 'is-danger',
+          hasIcon: true,
+          icon: 'times-circle',
+          iconPack: 'fa'
+        })
       }
     },
     remove: function (key) {
@@ -307,7 +316,18 @@ export default {
             })
           }
         })
+        this.confirmpassword = ''
         this.pullData()
+      } else {
+        this.$dialog.alert({
+          title: 'Error',
+          message: 'Incorrect. Enter your password again.',
+          type: 'is-danger',
+          hasIcon: true,
+          icon: 'times-circle',
+          iconPack: 'fa'
+        })
+        this.confirmpassword = ''
       }
     },
     addadmincolumn () {
