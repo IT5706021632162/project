@@ -30,7 +30,7 @@
                         <div class="" v-for = " (admin, key, count) in showAdmin">
                           <div v-if="email === admin.email ">{{admin.email}}</div>
                         </div>
-                            <a class="button is-white is-outlined"> <span class="icon is-small"> <i class="fa fa-sign-in"></i>  </span>    <span @click="signIn(admin.email)">Login</span></a>
+                            <a class="button is-white is-outlined"> <span class="icon is-small"> <i class="fa fa-sign-in"></i>  </span>    <span @click="signIn()">Login</span></a>
                               <br><br><br>
                     </article>
                   </div>
@@ -55,7 +55,7 @@
           password: ''
         },
         showAdmin: '',
-        ma: ''
+        status: 'false'
       }
     },
     created: function () {
@@ -68,7 +68,7 @@
           that.showAdmin = snapshot.val()
         })
       },
-      signIn: function (dbadmin) {
+      signIn: function () {
         firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
           (user) => {
             this.$router.replace('home1')
@@ -77,10 +77,11 @@
             // alert('Oops. ' + err.message)
             for (var mai in this.showAdmin) {
               if (this.email === this.showAdmin[mai].email && this.password === this.showAdmin[mai].password) {
-                this.ma = 'true'
+                this.status = 'true'
               }
             }
-            if (this.ma === 'true') {
+            if (this.status === 'true') {
+              console.log('this.status : ' + this.status)
               firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
                 (user) => {
                   firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
@@ -89,8 +90,8 @@
                     }
                   )
                 }
-              )//
-            } else {
+              )
+            } if (this.status === 'false') {
               this.$dialog.alert({
                 title: 'Error',
                 message: 'Opps. ' + err.message,
