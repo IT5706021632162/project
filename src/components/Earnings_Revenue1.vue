@@ -51,6 +51,29 @@
       </div>
       <!-- จบ แทปเมนูต่างๆ -->
 
+      <!-- แสดงตาราง member ผู้ใช้บริการทั้งหมด -->
+      <div  class="tablemember" >
+        <table class="table" >
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">E-mail</th>
+              <th scope="col">Credit</th>
+            </tr>
+          </thead>
+            <tbody  v-for = " (users, key, count) in Today">
+              <tr>
+                <td>  {{Today}}  </td>
+                <td>  {{users.name}}  </td>
+                <td>  {{users.email}} </td>
+                <td>  {{users.money}} Bath </td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+      <!-- จบ แสดงตาราง member ผู้ใช้บริการทั้งหมด -->
+
  </div>
 </template>
 
@@ -62,7 +85,7 @@ export default {
   name: 'home',
   data () {
     return {
-      showusers: '',
+      Today: '',
       count: 0,
       chartData: [
         {label: 'arc 1', value: 44},
@@ -88,8 +111,8 @@ export default {
   methods: {
     pullData: function () {   /* แสดงชือตาราง User ทั้งหมด */
       let that = this
-      firebase.database().ref('/users/').once('value').then(function (snapshot) {
-        that.showusers = snapshot.val()
+      firebase.database().ref('/Today/').once('value').then(function (snapshot) {
+        that.Today = snapshot.val()
       })
     },
     logout: function () {
