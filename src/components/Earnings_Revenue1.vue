@@ -54,42 +54,182 @@
 
 
       <div class="" v-if="type === 'Branch1'"> <!-- div ใหญ่สุดที่แสดงข้อมูล ของสาขา 1 -->
+        <!-- แสดง  เดือน   -->
+                <div class="columns">
+                  <div class="column"></div>
+                    <div class="control has-icons-left">
+                              <label v-if ="Month === 0"><h1>เดือน ณ ปัจจุบัน : มกราคม</h1></label>
+                              <label v-if ="Month === 1"><h1>เดือน ณ ปัจจุบัน : กุมภาพันธ์</h1></label>
+                              <label v-if ="Month === 2"><h1>เดือน ณ ปัจจุบัน : มีนาคม</h1></label>
+                              <label v-if ="Month === 3"><h1>เดือน ณ ปัจจุบัน : เมษายน</h1></label>
+                              <label v-if ="Month === 4"><h1>เดือน ณ ปัจจุบัน : พฤษภาคม</h1></label>
+                              <label v-if ="Month === 5"><h1>เดือน ณ ปัจจุบัน : มิถุนายน</h1></label>
+                              <label v-if ="Month === 6"><h1>เดือน ณ ปัจจุบัน : กรกฎาคม</h1></label>
+                              <label v-if ="Month === 7"><h1>เดือน ณ ปัจจุบัน : สิงหาคม</h1></label>
+                              <label v-if ="Month === 8"><h1>เดือน ณ ปัจจุบัน : กันยายน</h1></label>
+                              <label v-if ="Month === 9"><h1>เดือน ณ ปัจจุบัน : ตุลาคม</h1></label>
+                              <label v-if ="Month === 10"><h1>เดือน ณ ปัจจุบัน : พฤศจิกายน</h1></label>
+                              <label v-if ="Month === 11"><h1>เดือน ณ ปัจจุบัน : ธันวาคม</h1></label>
+                    </div>
+                    <div class="column"></div>
+                  </div>
+        <!-- จบ แสดง  เดือน    -->
 
-      <!-- แสดง  select เดือน  สาขาด้วย และ ค่าน้ำ ค่าไฟ -->
+      <!-- แสดง  ปุ่มกด สาขาด้วย  -->
               <div class="columns">
-                <div class="column"></div>&nbsp;
+                <div class="column "></div>&nbsp;
                     <a class="button is-info is-focused is-medium" v-on:click="Changebranch1()">สาขา 1</a>&nbsp;
                     <a class="button  is-focused is-medium" v-on:click="Changebranch2()">สาขา 2</a>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <div class="control has-icons-left">
 
-                            <label v-if ="Month === 0"><h1>มกราคม</h1></label>
-                            <label v-if ="Month === 1"><h1>กุมภาพันธ์</h1></label>
-                            <label v-if ="Month === 2"><h1>มีนาคม</h1></label>
-                            <label v-if ="Month === 3"><h1>เมษายน</h1></label>
-                            <label v-if ="Month === 4"><h1>พฤษภาคม</h1></label>
-                            <label v-if ="Month === 5"><h1>มิถุนายน</h1></label>
-                            <label v-if ="Month === 6"><h1>กรกฎาคม</h1></label>
-                            <label v-if ="Month === 7"><h1>สิงหาคม</h1></label>
-                            <label v-if ="Month === 8"><h1>กันยายน</h1></label>
-                            <label v-if ="Month === 9"><h1>ตุลาคม</h1></label>
-                            <label v-if ="Month === 10"><h1>พฤศจิกายน</h1></label>
-                            <label v-if ="Month === 11"><h1>ธันวาคม</h1></label>
-
-                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                          <a class="button is-info is-focused is-medium"  v-on:click="water()">ค่าน้ำประปา</a>
-                          <a class="button  is-focused is-medium"  v-on:click="fire()">ค่าไฟฟ้า</a>
-
                   </div>
-
-
                   <div class="column"></div>
                 </div>
-      <!-- จบ แสดง  select เดือน  สาขาด้วย และ ค่าน้ำ ค่าไฟ  -->
+      <!-- จบ แสดง  ปุ่มกด  สาขาด้วย  -->
 <br>
 
-      <!-- แสดง ตารางเดือน วันนี้ สัปดาห์ เดือน -->
+
+        <!-- แสดงตาราง ค่าน้ำประปา และ ค่าไฟฟ้า  -->
+        <div class="columns">
+          <div class="column"> </div>
+            <div class="column">
+              <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" border="2">
+                <tbody  v-for = " Branch1 in Branch1">
+                <tr class="table-primary">
+                  <th colspan="14" >
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ค่าน้ำประปา
+                  </th>
+                </tr>
+                <tr >
+                  <th rowspan="2" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp; วันนี้ </th>
+                  <th colspan="10" >
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    สัปดาห์นี้
+                  </th>
+                  <th rowspan="2" colspan="2"> &nbsp;&nbsp;&nbsp;&nbsp;เดือนนี้ </th>
+                </tr>
+                <tr>
+                  <th colspan="2"> สัปดาห์ที่ 1 </th>
+                  <th colspan="2"> สัปดาห์ที่ 2 </th>
+                  <th colspan="2"> สัปดาห์ที่ 3 </th>
+                  <th colspan="2"> สัปดาห์ที่ 4 </th>
+                  <th colspan="2"> สัปดาห์ที่ 5 </th>
+                </tr>
+                <tr>
+                  <th> Unit </th>
+                  <th> Bath </th>
+                  <th> Unit </th>
+                  <th> Bath </th>
+                  <th> Unit </th>
+                  <th> Bath </th>
+                  <th> Unit </th>
+                  <th> Bath </th>
+                  <th> Unit </th>
+                  <th> Bath </th>
+                  <th> Unit </th>
+                  <th> Bath </th>
+                  <th> Unit </th>
+                  <th> Bath </th>
+                </tr>
+                <tr>
+                  <td> {{Branch1.Unit1}} </td>    <!-- ค่าน้ำประปาวันนี้  Unit  -->
+                  <td> {{Branch1.Price1}} </td>   <!-- ค่าน้ำประปาวันนี้  Bath  -->
+                  <td> 1 </td>
+                  <td> 1 </td>
+                  <td> 2 </td>
+                  <td> 2 </td>
+                  <td> 3 </td>
+                  <td> 3 </td>
+                  <td> 4 </td>
+                  <td> 4 </td>
+                  <td> 5 </td>
+                  <td> 5 </td>
+                  <td> 0 </td>
+                  <td> 0 </td>
+                </tr>
+              </tbody>
+              </table>
+            </div>
+                <!-- -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-  -->
+                <div class="control has-icons-left"></div>
+                <!-- -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-  -->
+            <div class="column">
+              <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" border="2">
+                <tbody  v-for = " Branch1 in Branch1">
+                <tr class="table-warning">
+                  <th colspan="14" >
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ค่าไฟฟ้า
+                  </th>
+                </tr>
+                <tr >
+                  <th rowspan="2" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp; วันนี้ </th>
+                  <th colspan="10" >
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    สัปดาห์นี้
+                  </th>
+                  <th rowspan="2" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp; เดือนนี้ </th>
+                </tr>
+                <tr>
+                  <th colspan="2"> สัปดาห์ที่ 1 </th>
+                  <th colspan="2"> สัปดาห์ที่ 2 </th>
+                  <th colspan="2"> สัปดาห์ที่ 3 </th>
+                  <th colspan="2"> สัปดาห์ที่ 4 </th>
+                  <th colspan="2"> สัปดาห์ที่ 5 </th>
+                </tr>
+                <tr>
+                  <th> Unit </th>
+                  <th> Bath </th>
+                  <th> Unit </th>
+                  <th> Bath </th>
+                  <th> Unit </th>
+                  <th> Bath </th>
+                  <th> Unit </th>
+                  <th> Bath </th>
+                  <th> Unit </th>
+                  <th> Bath </th>
+                  <th> Unit </th>
+                  <th> Bath </th>
+                  <th> Unit </th>
+                  <th> Bath </th>
+                </tr>
+                <tr>
+                  <td> 0 </td>
+                  <td> 0 </td>
+                  <td> 1 </td>
+                  <td> 1 </td>
+                  <td> 2 </td>
+                  <td> 2 </td>
+                  <td> 3 </td>
+                  <td> 3 </td>
+                  <td> 4 </td>
+                  <td> 4 </td>
+                  <td> 5 </td>
+                  <td> 5 </td>
+                  <td> 0 </td>
+                  <td> 0 </td>
+                </tr>
+              </tbody>
+              </table>
+            </div>
+          <div class="column"> </div>
+        </div>
+          <!-- จบ แสดงตาราง ค่าน้ำประปา และ ค่าไฟฟ้า -->
+
+
+
+      <!-- แสดง ตารางรายรับ รายจ่าย แจ้งเครื่องซักผ้าเสีย และ ค่าน้ำ ค่าไฟฟ้าด้วย-->
             <div class="columns">
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <div class="column is-half">
@@ -97,7 +237,21 @@
                   <table class="table is-bordered"  >
                     <thead>
                       <tr>
+                        <th colspan="5" >
+                          <a class="button is-info is-focused is-medium" >รายจ่าย</a>
+                          <a class="button is-info is-focused is-medium" >รายรับ</a>
+                          <a class="button is-info is-focused is-medium" >แจ้งเครื่องซักผ้าเสีย</a>
+                        </th>
+                      </tr>
+                      <tr>
+                        <th></th>
+                        <th colspan="2">ค่าไฟฟ้า</th>
+                        <th colspan="2">ค่าน้ำประปา</th>
+                      </tr>
+                      <tr>
                         <th scope="col">เดือน</th>
+                        <th scope="col">Unit</th>
+                        <th scope="col">ราคา</th>
                         <th scope="col">Unit</th>
                         <th scope="col">ราคา</th>
                       </tr>
@@ -106,9 +260,13 @@
                         <td>มกราคม</td>
                         <td></td>
                         <td></td>
+                        <td></td>
+                        <td></td>
                       </tr>
                       <tr>
                         <td>กุมภาพันธ์</td>
+                        <td></td>
+                        <td></td>
                         <td></td>
                         <td></td>
                       </tr>
@@ -116,9 +274,13 @@
                         <td>มีนาคม</td>
                         <td></td>
                         <td></td>
+                        <td></td>
+                        <td></td>
                       </tr>
                       <tr>
                         <td>เมษายน</td>
+                        <td></td>
+                        <td></td>
                         <td></td>
                         <td></td>
                       </tr>
@@ -126,9 +288,13 @@
                         <td>พฤษภาคม</td>
                         <td></td>
                         <td></td>
+                        <td></td>
+                        <td></td>
                       </tr>
                       <tr>
                         <td>มิถุนายน</td>
+                        <td></td>
+                        <td></td>
                         <td></td>
                         <td></td>
                       </tr>
@@ -136,9 +302,13 @@
                         <td>กรกฎาคม</td>
                         <td></td>
                         <td></td>
+                        <td></td>
+                        <td></td>
                       </tr>
                       <tr>
                         <td>สิงหาคม</td>
+                        <td></td>
+                        <td></td>
                         <td></td>
                         <td></td>
                       </tr>
@@ -146,9 +316,13 @@
                         <td>กันยายน</td>
                         <td></td>
                         <td></td>
+                        <td></td>
+                        <td></td>
                       </tr>
                       <tr>
                         <td>ตุลาคม</td>
+                        <td></td>
+                        <td></td>
                         <td></td>
                         <td></td>
                       </tr>
@@ -156,68 +330,23 @@
                         <td>พฤศจิกายน</td>
                         <td></td>
                         <td></td>
+                        <td></td>
+                        <td></td>
                       </tr>
                       <tr>
                         <td>ธันวาคม</td>
+                        <td></td>
+                        <td></td>
                         <td></td>
                         <td></td>
                       </tr>
 
                   </table>
                 </div>
-              </div>
-
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <div class="column" >
-              <h3>  ค่าน้ำประปาวันนี้</h3>
-              <tbody  v-for = " Branch1 in Branch1">
-                <tr>
-                  <td> <h5> {{Branch1.Unit1}} Unit </h5> </td>
-                </tr>
-                <tr>
-                  <td> <h5> {{Branch1.Price1}} Bath </h5> </td>
-                </tr>
-              </tbody>
-
-              <hr>
-              <h3>  ค่าน้ำประปาสัปดาห์นี้</h3>
-              <tbody  v-for = " Branch1 in Branch1">
-
-                <tr>
-                  <td> <h5>สัปดาห์ที่ 1 <br> {{Branch1.April.one.Unit1}} Unit <br> {{Branch1.April.one.Price1}} Bath</h5> </td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <td> <h5>สัปดาห์ที่ 2 <br>  {{Branch1.Unit1}} Unit </br> {{Branch1.Price1}} Bath</h5> </td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <td> <h5>สัปดาห์ที่ 3 <br>  {{Branch1.Unit1}} Unit </br> {{Branch1.Price1}} Bath</h5> </td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                </tr>
-                <br>
-                <tr>
-                  <td> <h5>สัปดาห์ที่ 4 <br>  {{Branch1.Unit1}} Unit </br> {{Branch1.Price1}} Bath</h5> </td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <td> <h5>สัปดาห์ที่ 5 <br>  {{Branch1.Unit1}} Unit </br> {{Branch1.Price1}} Bath</h5> </td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </tr>
-
-              </tbody>
-
-              <hr>
-              <h3>  ค่าน้ำประปาเดือนนี้</h3>
-              <tbody  v-for = " Branch1 in Branch1">
-                <tr>
-                  <td> <h5> {{Branch1.Unit1}} Unit </h5> </td>
-                </tr>
-                <tr>
-                  <td> <h5> {{Branch1.Price1}} Bath </h5> </td>
-                </tr>
-              </tbody>
-
-
-              </div>
-
-
-
-
-              <div class="column"></div>
-
             </div>
-<!-- จบ แสดง ตารางเดือน วันนี้ สัปดาห์ เดือน -->
+          <div class="column"></div>
+        </div>
+<!-- จบ แสดง ตารางรายรับ รายจ่าย แจ้งเครื่องซักผ้าเสีย และ ค่าน้ำ ค่าไฟฟ้าด้วย-->
 
       </div><!-- จบ div ใหญ่สุดที่แสดงข้อมูล ของสาขา 1 -->
 
@@ -239,7 +368,6 @@ export default {
       Month: '',
       count: 0,
       type: 'Branch1',
-      waterfire: 'water',
       month: ''
     }
   },
