@@ -257,13 +257,13 @@
                        <tr>
                          <td>  {{count+1}}.  </td>
                          <td>   <center><img width="60px" src="../assets/Washing-machine.png"> </center> </td>
-                         <td>  <a  v-if ="show.type === 'On'">    <!-- แสดง เครื่องซักผ้าที่ใช้ไดด้ -->
-                                  <a class="button  is-success" @click="truee(key)">On</a>
-                                  <a class="button " @click="falsee(key)">Off</a>
-                              </a>
-                              <a  v-if ="show.type === 'Off'">    <!-- แสดง เครื่องซักผ้าที่พัง -->
-                                        <a class="button" @click="truee(key)">On</a>
-                                        <a class="button  is-danger " @click="falsee(key)">Off</a>
+                         <td>  <a  v-if ="show.type === 'Usable'">    <!-- แสดง เครื่องซักผ้าที่ใช้ไดด้ -->
+                                  <a class="button  is-success" @click="truee(key)">Usable </a>
+                                  <a class="button " @click="falsee(key)">Defective</a>
+                              </a>                              
+                              <a  v-if ="show.type === 'Defective'">    <!-- แสดง เครื่องซักผ้าที่พัง -->
+                                        <a class="button" @click="truee(key)">Usable </a>
+                                        <a class="button  is-danger " @click="falsee(key)">Defective</a>
                               </a>
                         </td>
                         <td>      <a class="button is-danger is-outlined" @click="Delete(key)">Delete</a> </td>
@@ -539,7 +539,6 @@ export default {
       count: 0,
       type: 'Branch1',
       month: '',
-      isSwitchedCustom: 'On',
       showWashingmachineBranch1: '',
       data: {
         type: ''
@@ -592,20 +591,20 @@ export default {
       this.type = 'Branch2'
     },
     insertWashingmachine () { // เพิ่มเครื่องซักผ้า โดยก้แล้ว จะให้ใส่คำว่า true ไปเลย
-      this.data.type = 'On'
+      this.data.type = 'Usable'
       firebase.database().ref('WashingmachineBranch1').push(this.data)
       this.pullData()
     },
     truee (key, type) { // เปลี่ยนค่าจาก false เป็น true
       firebase.database().ref('/WashingmachineBranch1/').child(key).update({
-        type: 'On'
+        type: 'Usable'
       })
       this.pullData()
       this.checkEdit = ''
     },
     falsee (key, type) { // เปลี่ยนค่าจาก true เป็น false
       firebase.database().ref('/WashingmachineBranch1/').child(key).update({
-        type: 'Off'
+        type: 'Defective'
       })
       this.pullData()
       this.checkEdit = ''
