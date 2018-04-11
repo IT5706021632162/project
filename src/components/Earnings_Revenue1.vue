@@ -228,126 +228,296 @@
           <!-- จบ แสดงตาราง ค่าน้ำประปา และ ค่าไฟฟ้า -->
 
 
+<!-- ------------------------------------------------------------------------------------------------------------------- -->
+    <!-- แสดง ตารางรายรับ รายจ่าย แจ้งเครื่องซักผ้าเสีย และ ค่าน้ำ ค่าไฟฟ้าด้วย-->
+    <div class="columns">
+      <div class="column "></div>
+        <div class="control has-icons-left">
+            <div class="columns is-desktop">
+              <div class="column">
+                <table class="table is-bordered"  >
 
-      <!-- แสดง ตารางรายรับ รายจ่าย แจ้งเครื่องซักผ้าเสีย และ ค่าน้ำ ค่าไฟฟ้าด้วย-->
-            <div class="columns">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <div class="column is-half">
-                <div  class="table" >
-                  <table class="table is-bordered"  >
-                    <thead>
-                      <tr>
-                        <th colspan="5" >
-                          <a class="button is-info is-focused is-medium" >รายจ่าย</a>
-                          <a class="button is-info is-focused is-medium" >รายรับ</a>
-                          <a class="button is-info is-focused is-medium" >แจ้งเครื่องซักผ้าเสีย</a>
-                        </th>
-                      </tr>
-                      <tr>
-                        <th></th>
-                        <th colspan="2">ค่าไฟฟ้า</th>
-                        <th colspan="2">ค่าน้ำประปา</th>
-                      </tr>
-                      <tr>
-                        <th scope="col">เดือน</th>
-                        <th scope="col">Unit</th>
-                        <th scope="col">ราคา</th>
-                        <th scope="col">Unit</th>
-                        <th scope="col">ราคา</th>
-                      </tr>
-                    </thead>
-                      <tr>
-                        <td>มกราคม</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td>กุมภาพันธ์</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td>มีนาคม</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td>เมษายน</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td>พฤษภาคม</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td>มิถุนายน</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td>กรกฎาคม</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td>สิงหาคม</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td>กันยายน</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td>ตุลาคม</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td>พฤศจิกายน</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td>ธันวาคม</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-
-                  </table>
-                </div>
+                     <tr>
+                       <th colspan="4">
+                         <center>  <label for="recipient-name" class="form-control-label"><h3> แจ้งเครื่องซักผ้าเสีย </h3> </label> </center>
+                       </th>
+                     </tr>
+                     <tr>
+                       <th colspan="4">
+                         <center>  <a class="button is-info is-focused"  @click="insertWashingmachine()"> <i class="fa fa-plus" aria-hidden="true"></i> &nbsp;Add</a> </center>
+                       </th>
+                     </tr>
+                     <tr>
+                       <th scope="col">#</th>
+                       <th scope="col">เครื่องซักผ้า</th>
+                       <th scope="col">สถานะ</th>
+                       <th scope="col">delete</th>
+                     </tr>
+                     <tbody  v-for = "(show, key, count) in showWashingmachineBranch1"  :key ="show.num">
+                       <tr>
+                         <td>  {{count+1}}.  </td>
+                         <td>   <center><img width="60px" src="../assets/Washing-machine.png"> </center> </td>
+                         <td>  <a  v-if ="show.type === 'On'">    <!-- แสดง เครื่องซักผ้าที่ใช้ไดด้ -->
+                                  <a class="button  is-success" @click="truee(key)">On</a>
+                                  <a class="button " @click="falsee(key)">Off</a>
+                              </a>
+                              <a  v-if ="show.type === 'Off'">    <!-- แสดง เครื่องซักผ้าที่พัง -->
+                                        <a class="button" @click="truee(key)">On</a>
+                                        <a class="button  is-danger " @click="falsee(key)">Off</a>
+                              </a>
+                        </td>
+                        <td>      <a class="button is-danger is-outlined" @click="Delete(key)">Delete</a> </td>
+                       </tr>
+                     </tbody>
+                 </table>
+              </div>
+              <!-- -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-  -->
+              <div class="column">
+                <table class="table is-bordered"  >
+                  <thead>
+                    <tr>
+                      <th colspan="5" >
+                      <center>  <label for="recipient-name" class="form-control-label"><h3> รายรับ </h3> </label> </center>
+                      </th>
+                    </tr>
+                    <tr>
+                      <th></th>
+                      <th colspan="2">ค่าไฟฟ้า</th>
+                      <th colspan="2">ค่าน้ำประปา</th>
+                    </tr>
+                    <tr>
+                      <th scope="col">เดือน</th>
+                      <th scope="col">Unit</th>
+                      <th scope="col">ราคา</th>
+                      <th scope="col">Unit</th>
+                      <th scope="col">ราคา</th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+              <!-- -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-  -->
+              <div class="column">
+                <table class="table is-bordered"  >
+                  <thead>
+                    <tr>
+                      <th colspan="5" >
+                        <center>  <label for="recipient-name" class="form-control-label"><h3> รายจ่าย </h3> </label> </center>
+                      </th>
+                    </tr>
+                    <tr>
+                      <th></th>
+                      <th colspan="2">ค่าไฟฟ้า</th>
+                      <th colspan="2">ค่าน้ำประปา</th>
+                    </tr>
+                    <tr>
+                      <th scope="col">เดือน</th>
+                      <th scope="col">Unit</th>
+                      <th scope="col">ราคา</th>
+                      <th scope="col">Unit</th>
+                      <th scope="col">ราคา</th>
+                    </tr>
+                  </thead>
+                    <tr>
+                      <td>มกราคม</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>กุมภาพันธ์</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>มีนาคม</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>เมษายน</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>พฤษภาคม</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>มิถุนายน</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>กรกฎาคม</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>สิงหาคม</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>กันยายน</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>ตุลาคม</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>พฤศจิกายน</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>ธันวาคม</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                </table>
+              </div>
+              <!-- -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-  -->
+              <div class="column">
+                <table class="table is-bordered"  >
+                  <thead>
+                    <tr>
+                      <th colspan="5" >
+                        <center>  <label for="recipient-name" class="form-control-label"><h3> รวม </h3> </label> </center>
+                      </th>
+                    </tr>
+                    <tr>
+                      <th></th>
+                      <th colspan="2">ค่าไฟฟ้า</th>
+                      <th colspan="2">ค่าน้ำประปา</th>
+                    </tr>
+                    <tr>
+                      <th scope="col">เดือน</th>
+                      <th scope="col">Unit</th>
+                      <th scope="col">ราคา</th>
+                      <th scope="col">Unit</th>
+                      <th scope="col">ราคา</th>
+                    </tr>
+                  </thead>
+                    <tr>
+                      <td>มกราคม</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>กุมภาพันธ์</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>มีนาคม</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>เมษายน</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>พฤษภาคม</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>มิถุนายน</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>กรกฎาคม</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>สิงหาคม</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>กันยายน</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>ตุลาคม</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>พฤศจิกายน</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>ธันวาคม</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                </table>
+              </div>
+              <!-- -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-  -->
             </div>
-          <div class="column"></div>
         </div>
-<!-- จบ แสดง ตารางรายรับ รายจ่าย แจ้งเครื่องซักผ้าเสีย และ ค่าน้ำ ค่าไฟฟ้าด้วย-->
-
+      <div class="column"></div>
+    </div>
+    <!-- จบ แสดง ตารางรายรับ รายจ่าย แจ้งเครื่องซักผ้าเสีย และ ค่าน้ำ ค่าไฟฟ้าด้วย-->
+<!-- ------------------------------------------------------------------------------------------------------------------- -->
       </div><!-- จบ div ใหญ่สุดที่แสดงข้อมูล ของสาขา 1 -->
 
 
@@ -368,7 +538,12 @@ export default {
       Month: '',
       count: 0,
       type: 'Branch1',
-      month: ''
+      month: '',
+      isSwitchedCustom: 'On',
+      showWashingmachineBranch1: '',
+      data: {
+        type: ''
+      }
     }
   },
   created: function () { /* แสดงชื่อ Admin */
@@ -388,6 +563,9 @@ export default {
       })
       firebase.database().ref('/Month/').once('value').then(function (snapshot) {
         that.Month = snapshot.val()
+      })
+      firebase.database().ref('/WashingmachineBranch1/').once('value').then(function (snapshot) {
+        that.showWashingmachineBranch1 = snapshot.val()
       })
     },
     logout: function () {
@@ -412,6 +590,29 @@ export default {
     },
     Changebranch2: function () {
       this.type = 'Branch2'
+    },
+    insertWashingmachine () { // เพิ่มเครื่องซักผ้า โดยก้แล้ว จะให้ใส่คำว่า true ไปเลย
+      this.data.type = 'On'
+      firebase.database().ref('WashingmachineBranch1').push(this.data)
+      this.pullData()
+    },
+    truee (key, type) { // เปลี่ยนค่าจาก false เป็น true
+      firebase.database().ref('/WashingmachineBranch1/').child(key).update({
+        type: 'On'
+      })
+      this.pullData()
+      this.checkEdit = ''
+    },
+    falsee (key, type) { // เปลี่ยนค่าจาก true เป็น false
+      firebase.database().ref('/WashingmachineBranch1/').child(key).update({
+        type: 'Off'
+      })
+      this.pullData()
+      this.checkEdit = ''
+    },
+    Delete (key) {
+      firebase.database().ref('WashingmachineBranch1').child(key).remove()
+      this.pullData()
     }
   }
 }
