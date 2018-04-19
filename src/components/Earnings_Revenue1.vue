@@ -260,7 +260,7 @@
                          <td>  <a  v-if ="show.type === 'Usable'">    <!-- แสดง เครื่องซักผ้าที่ใช้ไดด้ -->
                                   <a class="button  is-success" @click="truee(key)">Usable </a>
                                   <a class="button " @click="falsee(key)">Defective</a>
-                              </a>                              
+                              </a>
                               <a  v-if ="show.type === 'Defective'">    <!-- แสดง เครื่องซักผ้าที่พัง -->
                                         <a class="button" @click="truee(key)">Usable </a>
                                         <a class="button  is-danger " @click="falsee(key)">Defective</a>
