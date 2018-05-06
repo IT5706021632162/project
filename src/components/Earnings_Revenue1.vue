@@ -89,12 +89,12 @@
 <br>
 
 
-        <!-- แสดงตาราง ค่าน้ำประปา และ ค่าไฟฟ้า  -->
+        <!-- แสดงตาราง ค่าน้ำประปา   -->
         <div class="columns">
           <div class="column"> </div>
             <div class="column">
               <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" border="2">
-                <tbody  v-for = " Branch1 in Branch1">
+                <tbody  >
                 <tr class="table-primary">
                   <th colspan="14" >
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -137,31 +137,216 @@
                   <th> Unit </th>
                   <th> Bath </th>
                 </tr>
-                <tr>
-                  <td> {{Branch1.Unit1}} </td>    <!-- ค่าน้ำประปาวันนี้  Unit  -->
-                  <td> {{Branch1.Price1}} </td>   <!-- ค่าน้ำประปาวันนี้  Bath  -->
-                  <td> 1 </td>
-                  <td> 1 </td>
-                  <td> 2 </td>
-                  <td> 2 </td>
-                  <td> 3 </td>
-                  <td> 3 </td>
-                  <td> 4 </td>
-                  <td> 4 </td>
-                  <td> 5 </td>
-                  <td> 5 </td>
-                  <td> 0 </td>
-                  <td> 0 </td>
+                <tr v-if ="Month === 0">  <!-- มกราคม  January -->
+                  <td> {{this.weekWater.Unit1}} </td>    <!-- ค่าน้ำประปาวันนี้  Unit  -->
+                  <td> {{this.weekWater.Price1}} </td>   <!-- ค่าน้ำประปาวันนี้  Bath  -->
+                  <td> {{this.weekWater.January.one.Unit1}}     </td>
+                  <td> {{this.weekWater.January.one.Price1}}    </td>
+                  <td> {{this.weekWater.January.two.Price1}}    </td>
+                  <td> {{this.weekWater.January.two.Unit1}}     </td>
+                  <td> {{this.weekWater.January.three.Unit1}}   </td>
+                  <td> {{this.weekWater.January.three.Price1}}  </td>
+                  <td> {{this.weekWater.January.four.Price1}}   </td>
+                  <td> {{this.weekWater.January.four.Unit1}}    </td>
+                  <td> {{this.weekWater.January.five.Unit1}}    </td>
+                  <td> {{this.weekWater.January.five.Price1}}   </td>
+                  <td> {{this.weekWater.January.five.Unit1}}    </td>
+                  <td> {{this.weekWater.January.five.Price1}}   </td>
                 </tr>
+                <tr v-if ="Month === 1">   <!-- กุมภาพันธ์  February -->
+                  <td> {{this.weekWater.Unit1}} </td>    <!-- ค่าน้ำประปาวันนี้  Unit  -->
+                  <td> {{this.weekWater.Price1}} </td>   <!-- ค่าน้ำประปาวันนี้  Bath  -->
+                  <td> {{this.weekWater.February.one.Unit1}}     </td>
+                  <td> {{this.weekWater.February.one.Price1}}    </td>
+                  <td> {{this.weekWater.February.two.Price1}}    </td>
+                  <td> {{this.weekWater.February.two.Unit1}}     </td>
+                  <td> {{this.weekWater.February.three.Unit1}}   </td>
+                  <td> {{this.weekWater.February.three.Price1}}  </td>
+                  <td> {{this.weekWater.February.four.Price1}}   </td>
+                  <td> {{this.weekWater.February.four.Unit1}}    </td>
+                  <td> {{this.weekWater.February.five.Unit1}}    </td>
+                  <td> {{this.weekWater.February.five.Price1}}   </td>
+                  <td> {{this.weekWater.February.five.Unit1}}    </td>
+                  <td> {{this.weekWater.February.five.Price1}}   </td>
+                </tr>
+                <tr v-if ="Month === 2">   <!-- มีนาคม  March -->
+                  <td> {{this.weekWater.Unit1}} </td>    <!-- ค่าน้ำประปาวันนี้  Unit  -->
+                  <td> {{this.weekWater.Price1}} </td>   <!-- ค่าน้ำประปาวันนี้  Bath  -->
+                  <td> {{this.weekWater.March.one.Unit1}}     </td>
+                  <td> {{this.weekWater.March.one.Price1}}    </td>
+                  <td> {{this.weekWater.March.two.Price1}}    </td>
+                  <td> {{this.weekWater.March.two.Unit1}}     </td>
+                  <td> {{this.weekWater.March.three.Unit1}}   </td>
+                  <td> {{this.weekWater.March.three.Price1}}  </td>
+                  <td> {{this.weekWater.March.four.Price1}}   </td>
+                  <td> {{this.weekWater.March.four.Unit1}}    </td>
+                  <td> {{this.weekWater.March.five.Unit1}}    </td>
+                  <td> {{this.weekWater.March.five.Price1}}   </td>
+                  <td> {{this.weekWater.March.five.Unit1}}    </td>
+                  <td> {{this.weekWater.March.five.Price1}}   </td>
+                </tr>
+                <tr v-if ="Month === 3">   <!-- เมษายน  April -->
+                  <td> {{this.weekWater.Unit1}} </td>    <!-- ค่าน้ำประปาวันนี้  Unit  -->
+                  <td> {{this.weekWater.Price1}} </td>   <!-- ค่าน้ำประปาวันนี้  Bath  -->
+                  <td> {{this.weekWater.April.one.Unit1}}     </td>
+                  <td> {{this.weekWater.April.one.Price1}}    </td>
+                  <td> {{this.weekWater.April.two.Price1}}    </td>
+                  <td> {{this.weekWater.April.two.Unit1}}     </td>
+                  <td> {{this.weekWater.April.three.Unit1}}   </td>
+                  <td> {{this.weekWater.April.three.Price1}}  </td>
+                  <td> {{this.weekWater.April.four.Price1}}   </td>
+                  <td> {{this.weekWater.April.four.Unit1}}    </td>
+                  <td> {{this.weekWater.April.five.Unit1}}    </td>
+                  <td> {{this.weekWater.April.five.Price1}}   </td>
+                  <td> {{this.weekWater.April.five.Unit1}}    </td>
+                  <td> {{this.weekWater.April.five.Price1}}   </td>
+                </tr>
+                <tr v-if ="Month === 4">   <!-- พฤษภาคม  May -->
+                  <td> {{this.weekWater.Unit1}} </td>    <!-- ค่าน้ำประปาวันนี้  Unit  -->
+                  <td> {{this.weekWater.Price1}} </td>   <!-- ค่าน้ำประปาวันนี้  Bath  -->
+                  <td> {{this.weekWater.May.one.Unit1}}     </td>
+                  <td> {{this.weekWater.May.one.Price1}}    </td>
+                  <td> {{this.weekWater.May.two.Price1}}    </td>
+                  <td> {{this.weekWater.May.two.Unit1}}     </td>
+                  <td> {{this.weekWater.May.three.Unit1}}   </td>
+                  <td> {{this.weekWater.May.three.Price1}}  </td>
+                  <td> {{this.weekWater.May.four.Price1}}   </td>
+                  <td> {{this.weekWater.May.four.Unit1}}    </td>
+                  <td> {{this.weekWater.May.five.Unit1}}    </td>
+                  <td> {{this.weekWater.May.five.Price1}}   </td>
+                  <td> {{this.weekWater.May.five.Unit1}}    </td>
+                  <td> {{this.weekWater.May.five.Price1}}   </td>
+                </tr>
+                <tr v-if ="Month === 5">   <!-- มิถุนายน  June -->
+                  <td> {{this.weekWater.Unit1}} </td>    <!-- ค่าน้ำประปาวันนี้  Unit  -->
+                  <td> {{this.weekWater.Price1}} </td>   <!-- ค่าน้ำประปาวันนี้  Bath  -->
+                  <td> {{this.weekWater.June.one.Unit1}}     </td>
+                  <td> {{this.weekWater.June.one.Price1}}    </td>
+                  <td> {{this.weekWater.June.two.Price1}}    </td>
+                  <td> {{this.weekWater.June.two.Unit1}}     </td>
+                  <td> {{this.weekWater.June.three.Unit1}}   </td>
+                  <td> {{this.weekWater.June.three.Price1}}  </td>
+                  <td> {{this.weekWater.June.four.Price1}}   </td>
+                  <td> {{this.weekWater.June.four.Unit1}}    </td>
+                  <td> {{this.weekWater.June.five.Unit1}}    </td>
+                  <td> {{this.weekWater.June.five.Price1}}   </td>
+                  <td> {{this.weekWater.June.five.Unit1}}    </td>
+                  <td> {{this.weekWater.June.five.Price1}}   </td>
+                </tr>
+                <tr v-if ="Month === 6">   <!-- กรกฎาคม  July -->
+                  <td> {{this.weekWater.Unit1}} </td>    <!-- ค่าน้ำประปาวันนี้  Unit  -->
+                  <td> {{this.weekWater.Price1}} </td>   <!-- ค่าน้ำประปาวันนี้  Bath  -->
+                  <td> {{this.weekWater.July.one.Unit1}}     </td>
+                  <td> {{this.weekWater.July.one.Price1}}    </td>
+                  <td> {{this.weekWater.July.two.Price1}}    </td>
+                  <td> {{this.weekWater.July.two.Unit1}}     </td>
+                  <td> {{this.weekWater.July.three.Unit1}}   </td>
+                  <td> {{this.weekWater.July.three.Price1}}  </td>
+                  <td> {{this.weekWater.July.four.Price1}}   </td>
+                  <td> {{this.weekWater.July.four.Unit1}}    </td>
+                  <td> {{this.weekWater.July.five.Unit1}}    </td>
+                  <td> {{this.weekWater.July.five.Price1}}   </td>
+                  <td> {{this.weekWater.July.five.Unit1}}    </td>
+                  <td> {{this.weekWater.July.five.Price1}}   </td>
+                </tr>
+                <tr v-if ="Month === 7">   <!-- สิงหาคม  August -->
+                  <td> {{this.weekWater.Unit1}} </td>    <!-- ค่าน้ำประปาวันนี้  Unit  -->
+                  <td> {{this.weekWater.Price1}} </td>   <!-- ค่าน้ำประปาวันนี้  Bath  -->
+                  <td> {{this.weekWater.August.one.Unit1}}     </td>
+                  <td> {{this.weekWater.August.one.Price1}}    </td>
+                  <td> {{this.weekWater.August.two.Price1}}    </td>
+                  <td> {{this.weekWater.August.two.Unit1}}     </td>
+                  <td> {{this.weekWater.August.three.Unit1}}   </td>
+                  <td> {{this.weekWater.August.three.Price1}}  </td>
+                  <td> {{this.weekWater.August.four.Price1}}   </td>
+                  <td> {{this.weekWater.August.four.Unit1}}    </td>
+                  <td> {{this.weekWater.August.five.Unit1}}    </td>
+                  <td> {{this.weekWater.August.five.Price1}}   </td>
+                  <td> {{this.weekWater.August.five.Unit1}}    </td>
+                  <td> {{this.weekWater.August.five.Price1}}   </td>
+                </tr>
+                <tr v-if ="Month === 8">   <!-- กันยายน  September -->
+                  <td> {{this.weekWater.Unit1}} </td>    <!-- ค่าน้ำประปาวันนี้  Unit  -->
+                  <td> {{this.weekWater.Price1}} </td>   <!-- ค่าน้ำประปาวันนี้  Bath  -->
+                  <td> {{this.weekWater.September.one.Unit1}}     </td>
+                  <td> {{this.weekWater.September.one.Price1}}    </td>
+                  <td> {{this.weekWater.September.two.Price1}}    </td>
+                  <td> {{this.weekWater.September.two.Unit1}}     </td>
+                  <td> {{this.weekWater.September.three.Unit1}}   </td>
+                  <td> {{this.weekWater.September.three.Price1}}  </td>
+                  <td> {{this.weekWater.September.four.Price1}}   </td>
+                  <td> {{this.weekWater.September.four.Unit1}}    </td>
+                  <td> {{this.weekWater.September.five.Unit1}}    </td>
+                  <td> {{this.weekWater.September.five.Price1}}   </td>
+                  <td> {{this.weekWater.September.five.Unit1}}    </td>
+                  <td> {{this.weekWater.September.five.Price1}}   </td>
+                </tr>
+                <tr v-if ="Month === 9">   <!-- ตุลาคม  October -->
+                  <td> {{this.weekWater.Unit1}} </td>    <!-- ค่าน้ำประปาวันนี้  Unit  -->
+                  <td> {{this.weekWater.Price1}} </td>   <!-- ค่าน้ำประปาวันนี้  Bath  -->
+                  <td> {{this.weekWater.October.one.Unit1}}     </td>
+                  <td> {{this.weekWater.October.one.Price1}}    </td>
+                  <td> {{this.weekWater.October.two.Price1}}    </td>
+                  <td> {{this.weekWater.October.two.Unit1}}     </td>
+                  <td> {{this.weekWater.October.three.Unit1}}   </td>
+                  <td> {{this.weekWater.October.three.Price1}}  </td>
+                  <td> {{this.weekWater.October.four.Price1}}   </td>
+                  <td> {{this.weekWater.October.four.Unit1}}    </td>
+                  <td> {{this.weekWater.October.five.Unit1}}    </td>
+                  <td> {{this.weekWater.October.five.Price1}}   </td>
+                  <td> {{this.weekWater.October.five.Unit1}}    </td>
+                  <td> {{this.weekWater.October.five.Price1}}   </td>
+                </tr>
+                <tr v-if ="Month === 10">   <!-- พฤศจิกายน  November -->
+                  <td> {{this.weekWater.Unit1}} </td>    <!-- ค่าน้ำประปาวันนี้  Unit  -->
+                  <td> {{this.weekWater.Price1}} </td>   <!-- ค่าน้ำประปาวันนี้  Bath  -->
+                  <td> {{this.weekWater.November.one.Unit1}}     </td>
+                  <td> {{this.weekWater.November.one.Price1}}    </td>
+                  <td> {{this.weekWater.November.two.Price1}}    </td>
+                  <td> {{this.weekWater.November.two.Unit1}}     </td>
+                  <td> {{this.weekWater.November.three.Unit1}}   </td>
+                  <td> {{this.weekWater.November.three.Price1}}  </td>
+                  <td> {{this.weekWater.November.four.Price1}}   </td>
+                  <td> {{this.weekWater.November.four.Unit1}}    </td>
+                  <td> {{this.weekWater.November.five.Unit1}}    </td>
+                  <td> {{this.weekWater.November.five.Price1}}   </td>
+                  <td> {{this.weekWater.November.five.Unit1}}    </td>
+                  <td> {{this.weekWater.November.five.Price1}}   </td>
+                </tr>
+                <tr v-if ="Month === 11">   <!-- ธันวาคม  December -->
+                  <td> {{this.weekWater.Unit1}} </td>    <!-- ค่าน้ำประปาวันนี้  Unit  -->
+                  <td> {{this.weekWater.Price1}} </td>   <!-- ค่าน้ำประปาวันนี้  Bath  -->
+                  <td> {{this.weekWater.December.one.Unit1}}     </td>
+                  <td> {{this.weekWater.December.one.Price1}}    </td>
+                  <td> {{this.weekWater.December.two.Price1}}    </td>
+                  <td> {{this.weekWater.December.two.Unit1}}     </td>
+                  <td> {{this.weekWater.December.three.Unit1}}   </td>
+                  <td> {{this.weekWater.December.three.Price1}}  </td>
+                  <td> {{this.weekWater.December.four.Price1}}   </td>
+                  <td> {{this.weekWater.December.four.Unit1}}    </td>
+                  <td> {{this.weekWater.December.five.Unit1}}    </td>
+                  <td> {{this.weekWater.December.five.Price1}}   </td>
+                  <td> {{this.weekWater.December.five.Unit1}}    </td>
+                  <td> {{this.weekWater.December.five.Price1}}   </td>
+                </tr>
+
               </tbody>
               </table>
-            </div>
+             </div>
+            <div class="column"> </div>
+          </div>
+            <!-- จบ แสดงตาราง ค่าน้ำประปา   -->
+
                 <!-- -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-  -->
                 <div class="control has-icons-left"></div>
                 <!-- -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-  -->
-            <div class="column">
+
+              <!-- แสดงตาราง ไฟฟ้า  -->
+                <div class="columns">
+                  <div class="column"> </div>
+                    <div class="column">
               <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" border="2">
-                <tbody  v-for = " Branch1 in Branch1">
+                <tbody>
                 <tr class="table-warning">
                   <th colspan="14" >
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -205,27 +390,206 @@
                   <th> Bath </th>
                 </tr>
                 <tr>
-                  <td> 0 </td>
-                  <td> 0 </td>
-                  <td> 1 </td>
-                  <td> 1 </td>
-                  <td> 2 </td>
-                  <td> 2 </td>
-                  <td> 3 </td>
-                  <td> 3 </td>
-                  <td> 4 </td>
-                  <td> 4 </td>
-                  <td> 5 </td>
-                  <td> 5 </td>
-                  <td> 0 </td>
-                  <td> 0 </td>
+                  <tr v-if ="Month === 0">  <!-- มกราคม  January -->
+                    <td> {{this.weekFire.Unit1}} </td>    <!-- ค่าน้ำประปาวันนี้  Unit  -->
+                    <td> {{this.weekFire.Price1}} </td>   <!-- ค่าน้ำประปาวันนี้  Bath  -->
+                    <td> {{this.weekFire.January.one.Unit1}}     </td>
+                    <td> {{this.weekFire.January.one.Price1}}    </td>
+                    <td> {{this.weekFire.January.two.Price1}}    </td>
+                    <td> {{this.weekFire.January.two.Unit1}}     </td>
+                    <td> {{this.weekFire.January.three.Unit1}}   </td>
+                    <td> {{this.weekFire.January.three.Price1}}  </td>
+                    <td> {{this.weekFire.January.four.Price1}}   </td>
+                    <td> {{this.weekFire.January.four.Unit1}}    </td>
+                    <td> {{this.weekFire.January.five.Unit1}}    </td>
+                    <td> {{this.weekFire.January.five.Price1}}   </td>
+                    <td> {{this.weekFire.January.five.Unit1}}    </td>
+                    <td> {{this.weekFire.January.five.Price1}}   </td>
+                  </tr>
+                  <tr v-if ="Month === 1">   <!-- กุมภาพันธ์  February -->
+                    <td> {{this.weekFire.Unit1}} </td>    <!-- ค่าน้ำประปาวันนี้  Unit  -->
+                    <td> {{this.weekFire.Price1}} </td>   <!-- ค่าน้ำประปาวันนี้  Bath  -->
+                    <td> {{this.weekFire.February.one.Unit1}}     </td>
+                    <td> {{this.weekFire.February.one.Price1}}    </td>
+                    <td> {{this.weekFire.February.two.Price1}}    </td>
+                    <td> {{this.weekFire.February.two.Unit1}}     </td>
+                    <td> {{this.weekFire.February.three.Unit1}}   </td>
+                    <td> {{this.weekFire.February.three.Price1}}  </td>
+                    <td> {{this.weekFire.February.four.Price1}}   </td>
+                    <td> {{this.weekFire.February.four.Unit1}}    </td>
+                    <td> {{this.weekFire.February.five.Unit1}}    </td>
+                    <td> {{this.weekFire.February.five.Price1}}   </td>
+                    <td> {{this.weekFire.February.five.Unit1}}    </td>
+                    <td> {{this.weekFire.February.five.Price1}}   </td>
+                  </tr>
+                  <tr v-if ="Month === 2">   <!-- มีนาคม  March -->
+                    <td> {{this.weekFire.Unit1}} </td>    <!-- ค่าน้ำประปาวันนี้  Unit  -->
+                    <td> {{this.weekFire.Price1}} </td>   <!-- ค่าน้ำประปาวันนี้  Bath  -->
+                    <td> {{this.weekFire.March.one.Unit1}}     </td>
+                    <td> {{this.weekFire.March.one.Price1}}    </td>
+                    <td> {{this.weekFire.March.two.Price1}}    </td>
+                    <td> {{this.weekFire.March.two.Unit1}}     </td>
+                    <td> {{this.weekFire.March.three.Unit1}}   </td>
+                    <td> {{this.weekFire.March.three.Price1}}  </td>
+                    <td> {{this.weekFire.March.four.Price1}}   </td>
+                    <td> {{this.weekFire.March.four.Unit1}}    </td>
+                    <td> {{this.weekFire.March.five.Unit1}}    </td>
+                    <td> {{this.weekFire.March.five.Price1}}   </td>
+                    <td> {{this.weekFire.March.five.Unit1}}    </td>
+                    <td> {{this.weekFire.March.five.Price1}}   </td>
+                  </tr>
+                  <tr v-if ="Month === 3">   <!-- เมษายน  April -->
+                    <td> {{this.weekFire.Unit1}} </td>    <!-- ค่าน้ำประปาวันนี้  Unit  -->
+                    <td> {{this.weekFire.Price1}} </td>   <!-- ค่าน้ำประปาวันนี้  Bath  -->
+                    <td> {{this.weekFire.April.one.Unit1}}     </td>
+                    <td> {{this.weekFire.April.one.Price1}}    </td>
+                    <td> {{this.weekFire.April.two.Price1}}    </td>
+                    <td> {{this.weekFire.April.two.Unit1}}     </td>
+                    <td> {{this.weekFire.April.three.Unit1}}   </td>
+                    <td> {{this.weekFire.April.three.Price1}}  </td>
+                    <td> {{this.weekFire.April.four.Price1}}   </td>
+                    <td> {{this.weekFire.April.four.Unit1}}    </td>
+                    <td> {{this.weekFire.April.five.Unit1}}    </td>
+                    <td> {{this.weekFire.April.five.Price1}}   </td>
+                    <td> {{this.weekFire.April.five.Unit1}}    </td>
+                    <td> {{this.weekFire.April.five.Price1}}   </td>
+                  </tr>
+                  <tr v-if ="Month === 4">   <!-- พฤษภาคม  May -->
+                    <td> {{this.weekFire.Unit1}} </td>    <!-- ค่าน้ำประปาวันนี้  Unit  -->
+                    <td> {{this.weekFire.Price1}} </td>   <!-- ค่าน้ำประปาวันนี้  Bath  -->
+                    <td> {{this.weekFire.May.one.Unit1}}     </td>
+                    <td> {{this.weekFire.May.one.Price1}}    </td>
+                    <td> {{this.weekFire.May.two.Price1}}    </td>
+                    <td> {{this.weekFire.May.two.Unit1}}     </td>
+                    <td> {{this.weekFire.May.three.Unit1}}   </td>
+                    <td> {{this.weekFire.May.three.Price1}}  </td>
+                    <td> {{this.weekFire.May.four.Price1}}   </td>
+                    <td> {{this.weekFire.May.four.Unit1}}    </td>
+                    <td> {{this.weekFire.May.five.Unit1}}    </td>
+                    <td> {{this.weekFire.May.five.Price1}}   </td>
+                    <td> {{this.weekFire.May.five.Unit1}}    </td>
+                    <td> {{this.weekFire.May.five.Price1}}   </td>
+                  </tr>
+                  <tr v-if ="Month === 5">   <!-- มิถุนายน  June -->
+                    <td> {{this.weekFire.Unit1}} </td>    <!-- ค่าน้ำประปาวันนี้  Unit  -->
+                    <td> {{this.weekFire.Price1}} </td>   <!-- ค่าน้ำประปาวันนี้  Bath  -->
+                    <td> {{this.weekFire.June.one.Unit1}}     </td>
+                    <td> {{this.weekFire.June.one.Price1}}    </td>
+                    <td> {{this.weekFire.June.two.Price1}}    </td>
+                    <td> {{this.weekFire.June.two.Unit1}}     </td>
+                    <td> {{this.weekFire.June.three.Unit1}}   </td>
+                    <td> {{this.weekFire.June.three.Price1}}  </td>
+                    <td> {{this.weekFire.June.four.Price1}}   </td>
+                    <td> {{this.weekFire.June.four.Unit1}}    </td>
+                    <td> {{this.weekFire.June.five.Unit1}}    </td>
+                    <td> {{this.weekFire.June.five.Price1}}   </td>
+                    <td> {{this.weekFire.June.five.Unit1}}    </td>
+                    <td> {{this.weekFire.June.five.Price1}}   </td>
+                  </tr>
+                  <tr v-if ="Month === 6">   <!-- กรกฎาคม  July -->
+                    <td> {{this.weekFire.Unit1}} </td>    <!-- ค่าน้ำประปาวันนี้  Unit  -->
+                    <td> {{this.weekFire.Price1}} </td>   <!-- ค่าน้ำประปาวันนี้  Bath  -->
+                    <td> {{this.weekFire.July.one.Unit1}}     </td>
+                    <td> {{this.weekFire.July.one.Price1}}    </td>
+                    <td> {{this.weekFire.July.two.Price1}}    </td>
+                    <td> {{this.weekFire.July.two.Unit1}}     </td>
+                    <td> {{this.weekFire.July.three.Unit1}}   </td>
+                    <td> {{this.weekFire.July.three.Price1}}  </td>
+                    <td> {{this.weekFire.July.four.Price1}}   </td>
+                    <td> {{this.weekFire.July.four.Unit1}}    </td>
+                    <td> {{this.weekFire.July.five.Unit1}}    </td>
+                    <td> {{this.weekFire.July.five.Price1}}   </td>
+                    <td> {{this.weekFire.July.five.Unit1}}    </td>
+                    <td> {{this.weekFire.July.five.Price1}}   </td>
+                  </tr>
+                  <tr v-if ="Month === 7">   <!-- สิงหาคม  August -->
+                    <td> {{this.weekFire.Unit1}} </td>    <!-- ค่าน้ำประปาวันนี้  Unit  -->
+                    <td> {{this.weekFire.Price1}} </td>   <!-- ค่าน้ำประปาวันนี้  Bath  -->
+                    <td> {{this.weekFire.August.one.Unit1}}     </td>
+                    <td> {{this.weekFire.August.one.Price1}}    </td>
+                    <td> {{this.weekFire.August.two.Price1}}    </td>
+                    <td> {{this.weekFire.August.two.Unit1}}     </td>
+                    <td> {{this.weekFire.August.three.Unit1}}   </td>
+                    <td> {{this.weekFire.August.three.Price1}}  </td>
+                    <td> {{this.weekFire.August.four.Price1}}   </td>
+                    <td> {{this.weekFire.August.four.Unit1}}    </td>
+                    <td> {{this.weekFire.August.five.Unit1}}    </td>
+                    <td> {{this.weekFire.August.five.Price1}}   </td>
+                    <td> {{this.weekFire.August.five.Unit1}}    </td>
+                    <td> {{this.weekFire.August.five.Price1}}   </td>
+                  </tr>
+                  <tr v-if ="Month === 8">   <!-- กันยายน  September -->
+                    <td> {{this.weekFire.Unit1}} </td>    <!-- ค่าน้ำประปาวันนี้  Unit  -->
+                    <td> {{this.weekFire.Price1}} </td>   <!-- ค่าน้ำประปาวันนี้  Bath  -->
+                    <td> {{this.weekFire.September.one.Unit1}}     </td>
+                    <td> {{this.weekFire.September.one.Price1}}    </td>
+                    <td> {{this.weekFire.September.two.Price1}}    </td>
+                    <td> {{this.weekFire.September.two.Unit1}}     </td>
+                    <td> {{this.weekFire.September.three.Unit1}}   </td>
+                    <td> {{this.weekFire.September.three.Price1}}  </td>
+                    <td> {{this.weekFire.September.four.Price1}}   </td>
+                    <td> {{this.weekFire.September.four.Unit1}}    </td>
+                    <td> {{this.weekFire.September.five.Unit1}}    </td>
+                    <td> {{this.weekFire.September.five.Price1}}   </td>
+                    <td> {{this.weekFire.September.five.Unit1}}    </td>
+                    <td> {{this.weekFire.September.five.Price1}}   </td>
+                  </tr>
+                  <tr v-if ="Month === 9">   <!-- ตุลาคม  October -->
+                    <td> {{this.weekFire.Unit1}} </td>    <!-- ค่าน้ำประปาวันนี้  Unit  -->
+                    <td> {{this.weekFire.Price1}} </td>   <!-- ค่าน้ำประปาวันนี้  Bath  -->
+                    <td> {{this.weekFire.October.one.Unit1}}     </td>
+                    <td> {{this.weekFire.October.one.Price1}}    </td>
+                    <td> {{this.weekFire.October.two.Price1}}    </td>
+                    <td> {{this.weekFire.October.two.Unit1}}     </td>
+                    <td> {{this.weekFire.October.three.Unit1}}   </td>
+                    <td> {{this.weekFire.October.three.Price1}}  </td>
+                    <td> {{this.weekFire.October.four.Price1}}   </td>
+                    <td> {{this.weekFire.October.four.Unit1}}    </td>
+                    <td> {{this.weekFire.October.five.Unit1}}    </td>
+                    <td> {{this.weekFire.October.five.Price1}}   </td>
+                    <td> {{this.weekFire.October.five.Unit1}}    </td>
+                    <td> {{this.weekFire.October.five.Price1}}   </td>
+                  </tr>
+                  <tr v-if ="Month === 10">   <!-- พฤศจิกายน  November -->
+                    <td> {{this.weekFire.Unit1}} </td>    <!-- ค่าน้ำประปาวันนี้  Unit  -->
+                    <td> {{this.weekFire.Price1}} </td>   <!-- ค่าน้ำประปาวันนี้  Bath  -->
+                    <td> {{this.weekFire.November.one.Unit1}}     </td>
+                    <td> {{this.weekFire.November.one.Price1}}    </td>
+                    <td> {{this.weekFire.November.two.Price1}}    </td>
+                    <td> {{this.weekFire.November.two.Unit1}}     </td>
+                    <td> {{this.weekFire.November.three.Unit1}}   </td>
+                    <td> {{this.weekFire.November.three.Price1}}  </td>
+                    <td> {{this.weekFire.November.four.Price1}}   </td>
+                    <td> {{this.weekFire.November.four.Unit1}}    </td>
+                    <td> {{this.weekFire.November.five.Unit1}}    </td>
+                    <td> {{this.weekFire.November.five.Price1}}   </td>
+                    <td> {{this.weekFire.November.five.Unit1}}    </td>
+                    <td> {{this.weekFire.November.five.Price1}}   </td>
+                  </tr>
+                  <tr v-if ="Month === 11">   <!-- ธันวาคม  December -->
+                    <td> {{this.weekFire.Unit1}} </td>    <!-- ค่าน้ำประปาวันนี้  Unit  -->
+                    <td> {{this.weekFire.Price1}} </td>   <!-- ค่าน้ำประปาวันนี้  Bath  -->
+                    <td> {{this.weekFire.December.one.Unit1}}     </td>
+                    <td> {{this.weekFire.December.one.Price1}}    </td>
+                    <td> {{this.weekFire.December.two.Price1}}    </td>
+                    <td> {{this.weekFire.December.two.Unit1}}     </td>
+                    <td> {{this.weekFire.December.three.Unit1}}   </td>
+                    <td> {{this.weekFire.December.three.Price1}}  </td>
+                    <td> {{this.weekFire.December.four.Price1}}   </td>
+                    <td> {{this.weekFire.December.four.Unit1}}    </td>
+                    <td> {{this.weekFire.December.five.Unit1}}    </td>
+                    <td> {{this.weekFire.December.five.Price1}}   </td>
+                    <td> {{this.weekFire.December.five.Unit1}}    </td>
+                    <td> {{this.weekFire.December.five.Price1}}   </td>
+                  </tr>
                 </tr>
               </tbody>
               </table>
             </div>
           <div class="column"> </div>
         </div>
-          <!-- จบ แสดงตาราง ค่าน้ำประปา และ ค่าไฟฟ้า -->
+          <!-- จบ แสดงตาราง ไฟฟ้า  -->
+
 
 
 <!-- ------------------------------------------------------------------------------------------------------------------- -->
@@ -319,87 +683,88 @@
                   </thead>
                     <tr>
                       <td>มกราคม</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td> {{this.weekFire.January.totalUnit1}} </td>
+                      <td> {{this.weekFire.January.totalPrice1}} </td>
+                      <td> {{this.weekWater.January.totalUnit1}} </td>
+                      <td> {{this.weekWater.January.totalPrice1}} </td>
                     </tr>
                     <tr>
                       <td>กุมภาพันธ์</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td> {{this.weekFire.February.totalUnit1}} </td>
+                      <td> {{this.weekFire.February.totalPrice1}} </td>
+                      <td> {{this.weekWater.February.totalUnit1}} </td>
+                      <td> {{this.weekWater.February.totalPrice1}} </td>
                     </tr>
                     <tr>
                       <td>มีนาคม</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td> {{this.weekFire.March.totalUnit1}} </td>
+                      <td> {{this.weekFire.March.totalPrice1}} </td>
+                      <td> {{this.weekWater.March.totalUnit1}} </td>
+                      <td> {{this.weekWater.March.totalPrice1}} </td>
                     </tr>
                     <tr>
                       <td>เมษายน</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td> {{this.weekFire.April.totalUnit1}} </td>
+                      <td> {{this.weekFire.April.totalPrice1}} </td>
+                      <td> {{this.weekWater.April.totalUnit1}} </td>
+                      <td> {{this.weekWater.April.totalPrice1}} </td>
                     </tr>
                     <tr>
                       <td>พฤษภาคม</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td> {{this.weekFire.May.totalUnit1}} </td>
+                      <td> {{this.weekFire.May.totalPrice1}} </td>
+                      <td> {{this.weekWater.May.totalUnit1}} </td>
+                      <td> {{this.weekWater.May.totalPrice1}} </td>
+
                     </tr>
                     <tr>
                       <td>มิถุนายน</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td> {{this.weekFire.June.totalUnit1}} </td>
+                      <td> {{this.weekFire.June.totalPrice1}} </td>
+                      <td> {{this.weekWater.June.totalUnit1}} </td>
+                      <td> {{this.weekWater.June.totalPrice1}} </td>
                     </tr>
                     <tr>
                       <td>กรกฎาคม</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td> {{this.weekFire.July.totalUnit1}} </td>
+                      <td> {{this.weekFire.July.totalPrice1}} </td>
+                      <td> {{this.weekWater.July.totalUnit1}} </td>
+                      <td> {{this.weekWater.July.totalPrice1}} </td>
                     </tr>
                     <tr>
                       <td>สิงหาคม</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td> {{this.weekFire.August.totalUnit1}} </td>
+                      <td> {{this.weekFire.August.totalPrice1}} </td>
+                      <td> {{this.weekWater.August.totalUnit1}} </td>
+                      <td> {{this.weekWater.August.totalPrice1}} </td>
                     </tr>
                     <tr>
                       <td>กันยายน</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td> {{this.weekFire.September.totalUnit1}} </td>
+                      <td> {{this.weekFire.September.totalPrice1}} </td>
+                      <td> {{this.weekWater.September.totalUnit1}} </td>
+                      <td> {{this.weekWater.September.totalPrice1}} </td>
                     </tr>
                     <tr>
                       <td>ตุลาคม</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td> {{this.weekFire.October.totalUnit1}} </td>
+                      <td> {{this.weekFire.October.totalPrice1}} </td>
+                      <td> {{this.weekWater.October.totalUnit1}} </td>
+                      <td> {{this.weekWater.October.totalPrice1}} </td>
                     </tr>
                     <tr>
                       <td>พฤศจิกายน</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td> {{this.weekFire.November.totalUnit1}} </td>
+                      <td> {{this.weekFire.November.totalPrice1}} </td>
+                      <td> {{this.weekWater.November.totalUnit1}} </td>
+                      <td> {{this.weekWater.November.totalPrice1}} </td>
                     </tr>
                     <tr>
                       <td>ธันวาคม</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td> {{this.weekFire.December.totalUnit1}} </td>
+                      <td> {{this.weekFire.December.totalPrice1}} </td>
+                      <td> {{this.weekWater.December.totalUnit1}} </td>
+                      <td> {{this.weekWater.December.totalPrice1}} </td>
                     </tr>
                 </table>
               </div>
@@ -409,13 +774,13 @@
                   <thead>
                     <tr>
                       <th colspan="5" >
-                        <center>  <label for="recipient-name" class="form-control-label"><h3> รวม </h3> </label> </center>
+                        <center>  <label for="recipient-name" class="form-control-label"><h3> สรุปผลกำไร </h3> </label> </center>
                       </th>
                     </tr>
                     <tr>
                       <th></th>
                       <th colspan="2">ค่าไฟฟ้า</th>
-                      <th colspan="2">ค่าน้ำประปา</th>
+                      <th colspan="2">ค่าไฟฟ้า + ค่าน้ำประปา</th>
                     </tr>
                     <tr>
                       <th scope="col">เดือน</th>
@@ -539,6 +904,8 @@ export default {
       count: 0,
       type: 'Branch1',
       month: '',
+      weekWater: '',
+      weekFire: '',
       showWashingmachineBranch1: '',
       data: {
         type: ''
@@ -565,6 +932,12 @@ export default {
       })
       firebase.database().ref('/WashingmachineBranch1/').once('value').then(function (snapshot) {
         that.showWashingmachineBranch1 = snapshot.val()
+      })
+      firebase.database().ref('/Branch1/Water/').once('value').then(function (snapshot) {
+        that.weekWater = snapshot.val()
+      })
+      firebase.database().ref('/Branch1/Fire/').once('value').then(function (snapshot) {
+        that.weekFire = snapshot.val()
       })
     },
     logout: function () {

@@ -34,10 +34,10 @@
               </a>
             </li>
 
-            <li class="is-active">
+            <li class="is-active"  >
               <a>
                 <span class="icon is-small"><i class="fa fa-money"></i></span>
-                <span  v-on:click="Add_user_credit()" >Add user credit</span>
+                <span  v-on:click="Add_user_credit()" >Add user credit ({{num}})</span>
               </a>
             </li>
 
@@ -92,7 +92,7 @@
     </thead>
       <tbody  v-for = " (Users, key, count) in showimage"  >
         <tr   v-if= "Users.status === 'Waiting for Approve'">
-          <td>  {{Users.email}}  </td>
+          <td>  {{Users.email}} </td>
           <td width="17%">
               <img data-toggle="modal" :data-target="'#'+key" class="image is-128x128" v-bind:src="Users.url"/>
             <div :id="key" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -227,7 +227,9 @@ export default {
       type: 'addcredit',
       img: this.$route.params.img,
       keyimage1: '',
-      addEditmoney: 0
+      addEditmoney: 0,
+      num: '',
+      Status: 'Waiting for Approve'
     }
   },
   created: function () { /* แสดงชื่อ Admin */
@@ -248,6 +250,9 @@ export default {
       firebase.database().ref('/users/').once('value').then(function (snapshot) {
         that.showusers = snapshot.val()
       })
+      for (var mai in this.showimage) {
+        this.num = this.showimage[mai].email
+      }
     },
     logout: function () {
       firebase.auth().signOut().then(() => {
