@@ -6,6 +6,7 @@ import home1 from '@/components/home1'
 import Addcredit1 from '@/components/Addcredit1'
 import addadmin1 from '@/components/addadmin1'
 import EarningsRevenue1 from '@/components/Earnings_Revenue1'
+import EarningsRevenue2 from '@/components/Earnings_Revenue2'
 Vue.use(Router)
 
 let router = new Router({
@@ -19,6 +20,14 @@ let router = new Router({
       path: '/Earnings_Revenue1',
       name: 'Earnings_Revenue1',
       component: EarningsRevenue1,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/Earnings_Revenue2',
+      name: 'Earnings_Revenue2',
+      component: EarningsRevenue2,
       meta: {
         requiresAuth: true
       }

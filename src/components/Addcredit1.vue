@@ -1,55 +1,110 @@
 <template lang="html">
   <div >
-    <!--  แทปฟ้า -->
-    <section class="hero is-primary is-bold">
-        <div class="container"><br>
-            <h1 class="title is-1" style="font-family: 'Seymour One', sans-serif;">
-                W a s h
+    <!--  แทปดำ -->
+    <div class="bd-example is-paddingless">
+      <nav class="navbar is-dark navbar is-fixed-top">
+      <div class="navbar-brand">
 
-              <h2 class="is-pulled-right">
-                  <img class="image is-64x64" @click = "logout()" src="../assets/logout3.png">
-              </h2>
+        <h3 style="font-family:  'Russo One', sans-serif;" >  W a s h </h3>
 
-            </h1>
-            <label for="recipient-name" class="form-control-label"> Admin : {{this.user}}</label>
-            <br>
-        </div>
-    </section>
-  <!--  จบ แทปฟ้า -->
-<br>
-    <!--  แทปเมนูต่างๆ -->
-      <div class="tabs is-centered is-boxed is-medium">
-        <ul>
-            <li>
-              <a>
-                <span class="icon is-small"><i class="fa fa-users"></i></span>
-                <span v-on:click="home()">MEMBER</span>
-              </a>
-            </li>
 
-            <li>
-              <a>
-                <span class="icon is-small"><i class="fa fa-user-plus"></i></span>
-                <span v-on:click="addadmin()" >Add admin</span>
-              </a>
-            </li>
-
-            <li class="is-active"  >
-              <a>
-                <span class="icon is-small"><i class="fa fa-money"></i></span>
-                <span  v-on:click="Add_user_credit()" >Add user credit ({{num}})</span>
-              </a>
-            </li>
-
-            <li>
-              <a>
-                <span class="icon is-small"><i class="fa fa-pie-chart"></i></span>
-                <span  v-on:click="Earnings_Revenue()">Earnings Revenue</span>
-              </a>
-            </li>
-        </ul>
       </div>
-      <!-- จบ แทปเมนูต่างๆ -->
+
+      <div id="navMenuColorlink-example" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item">
+            <span class="icon is-small"><i class="fa fa-users"></i></span>&nbsp;
+            <span v-on:click="home()">MEMBER</span>
+          </a>
+          <a class="navbar-item">
+            <span class="icon is-small"><i class="fa fa-user-plus"></i></span>&nbsp;
+            <span v-on:click="addadmin()" >Add admin</span>
+          </a>
+          <a class="navbar-item is-active">
+            <span class="icon is-small"><i class="fa fa-money"></i></span>&nbsp;
+            <span  v-on:click="Add_user_credit()" >Add user credit</span>
+          </a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              <span class="icon is-small"><i class="fa fa-pie-chart"></i></span>&nbsp;
+              <span  v-on:click="Earnings_Revenue1()">Earnings Revenue 1</span>
+            </a>
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="">
+                Overview
+              </a>
+              <a class="navbar-item" href="">
+                Modifiers
+              </a>
+              <a class="navbar-item" href="">
+                Columns
+              </a>
+              <a class="navbar-item" href="">
+                Layout
+              </a>
+              <a class="navbar-item" href="">
+                Form
+              </a>
+              <hr class="navbar-divider">
+              <a class="navbar-item" href="">
+                Elements
+              </a>
+              <a class="navbar-item is-active" href="">
+                Components
+              </a>
+            </div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              <span class="icon is-small"><i class="fa fa-pie-chart"></i></span>&nbsp;
+              <span  v-on:click="Earnings_Revenue2()">Earnings Revenue 2</span>
+            </a>
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="">
+                Overview
+              </a>
+              <a class="navbar-item" href="">
+                Modifiers
+              </a>
+              <a class="navbar-item" href="">
+                Columns
+              </a>
+              <a class="navbar-item" href="">
+                Layout
+              </a>
+              <a class="navbar-item" href="">
+                Form
+              </a>
+              <hr class="navbar-divider">
+              <a class="navbar-item" href="">
+                Elements
+              </a>
+              <a class="navbar-item is-active" href="">
+                Components
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="field is-grouped">
+              <p class="control">
+                <h6>{{this.user}}</h6>
+                <a class="button is-dark" >
+                  <a class="button is-white is-outlined" @click = "logout()">LOGOUT</a>
+
+                </a>
+              </p>
+            </div>
+          </div>
+       </div>
+
+      </div>
+    </nav>
+
+    </div>
+    <!--  จบ แทปดำ -->
 
 <!--  เมนูย่อย เครดิต -->
   <div class="columns">
@@ -83,18 +138,19 @@
   <div  class="table1" >
 
   <table class="table is-hoverable" v-if= " type === 'addcredit'" >
-    <thead>
+    <thead class="table-secondary">
       <tr>
         <th scope="col">E-mail</th>
         <th scope="col">Photo</th>
         <th scope="col">Status</th>
+        <th scope="col">Approved</th>
       </tr>
     </thead>
       <tbody  v-for = " (Users, key, count) in showimage"  >
         <tr   v-if= "Users.status === 'Waiting for Approve'">
           <td>  {{Users.email}} </td>
           <td width="17%">
-              <img data-toggle="modal" :data-target="'#'+key" class="image is-128x128" v-bind:src="Users.url"/>
+              <img data-toggle="modal" :data-target="'#'+key" class="image is-48x48" v-bind:src="Users.url"/>
             <div :id="key" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -105,8 +161,8 @@
               </div>
             </div>
           </td>
-            <td> <br><br> <span class="tag is-danger">{{Users.status}}</span>    </td>
-            <td> <br><br>   <a type="button" class="btn btn-primary" data-toggle="modal" :href="'#'+Users.uid"  @click="keyimage(key)">Approved  </a>
+            <td>  <span class="tag is-danger">{{Users.status}}</span>   </td>
+            <td>   <a type="button" class="btn btn-primary" data-toggle="modal" :href="'#'+Users.uid"  @click="keyimage(key)">Approved  </a>
                <div   v-for = " (User, key, count) in showusers"  >
                  <div class="modal fade" :id="User.id" tabindex="-1" role="dialog"  :href="'#'+Users.uid" aria-hidden="true">
                    <div class="modal-dialog" role="document">
@@ -136,59 +192,65 @@
 
 
   <!-- ------------------------------------ -->
-  <table class="table" v-if= " type === 'Success Approve'" >
-    <thead>
+  <table class="table is-hoverable" v-if= " type === 'Success Approve'" >
+    <thead class="table-secondary">
       <tr>
 
         <th scope="col">E-mail</th>
         <th scope="col">Photo</th>
         <th scope="col">Status</th>
+
       </tr>
     </thead>
       <tbody v-for = " (Users, key, count) in showimage"  >
         <tr   v-if= "Users.status === 'Approved'">
 
           <td>  {{Users.email}}  </td>
-          <td width="17%">
-            <img data-toggle="modal" :data-target="'#'+key" class="image is-128x128" v-bind:src="Users.url"/>
+          <td width="30%">
+            <img data-toggle="modal" :data-target="'#'+key" class="image is-48x48" v-bind:src="Users.url"/>
           <div :id="key" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                   <div class="modal-body">
-                  <center>  <img v-bind:src="Users.url"/> </center>
+                  <center>  <img v-bind:src="Users.url"/></center>
                   </div>
               </div>
             </div>
           </div>
           </td>
-            <td> <br><br> <span class="tag is-success">{{Users.status}}</span>    </td>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            <td>  <span class="tag is-success">{{Users.status}}</span>    </td>
+
             <!-- <td> <br><br> <a class="btn btn-primary" data-toggle="collapse" :href="'#'+Users.uid" aria-expanded="false" aria-controls="collapseExample"> Approved </a></td> -->
   </a>
      </tr>
       </tbody>
   </table>
   <!--  ----------------------------- -->
-   <table class="table" v-if= " type === 'credit'" >
-     <thead>
+   <table class="table is-hoverable" v-if= " type === 'credit'" >
+     <thead class="table-secondary">
        <tr>
+
          <th scope="col">#</th>
-         <th scope="col">Name</th>
+         <th scope="col">E-mail</th>
          <th scope="col">Money</th>
-          <!-- <th scope="col">Edit money</th> -->
+         <th scope="col">Edit Money</th>
+         <th scope="col"></th>
+
        </tr>
      </thead>
        <tbody v-if="checkEdit !== key"  v-for = " (User, key, count) in showusers">
          <tr >
+
             <td>  {{count+1}}  </td>
            <td>  {{User.email}}  </td>
            <td> {{User.money}}</td>
-           <td><button type="button" class="button is-link " name="buttonAdd" @click="swap(key)" >Edit money</button> </td>
+           <td><button type="button" class="button is-danger is-outlined " name="buttonAdd" @click="swap(key)" >Edit money</button> </td>
 
          </tr>
        </tbody>
        <tbody v-else >
          <tr >
+
             <td>  {{count+1}}  </td>
            <td>  {{User.email}}  </td>
            <td> <input type="number" name=""  v-model="User.money"></td>
@@ -229,7 +291,8 @@ export default {
       keyimage1: '',
       addEditmoney: 0,
       num: '',
-      Status: 'Waiting for Approve'
+      Status: 'Waiting for Approve',
+      Transfer_money: 0
     }
   },
   created: function () { /* แสดงชื่อ Admin */
@@ -262,8 +325,11 @@ export default {
     addadmin () {
       this.$router.push({path: '/addadmin1'})
     },
-    Earnings_Revenue () {
+    Earnings_Revenue1 () {
       this.$router.push({path: '/Earnings_Revenue1'})
+    },
+    Earnings_Revenue2 () {
+      this.$router.push({path: '/Earnings_Revenue2'})
     },
     home () {
       this.$router.push({path: '/home1'})
@@ -275,6 +341,7 @@ export default {
       console.log(key)
       console.log(this.keyimage)
       money = +money + +addmoney
+      this.Transfer_money = +this.Transfer_money + +addmoney
       if (addmoney > 0 && addmoney <= 1000) {
         this.$dialog.confirm({
           title: 'Add Credit',
@@ -285,7 +352,8 @@ export default {
           onConfirm: () => {
             if (money >= 0) {
               firebase.database().ref('/users/').child(key).update({
-                money: money
+                money: money,
+                Transfer_money: this.Transfer_money
               })
               firebase.database().ref('/image/').child(this.keyimage1).update({
                 status: 'Approved'
@@ -394,7 +462,7 @@ export default {
 
 <style lang="css">
 .table1{
-  width: 80%;
-  margin-left: 10%;
+  width: 60%;
+  margin-left: 20%;
 }
 </style>

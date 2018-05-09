@@ -1,74 +1,145 @@
 <template >
   <div class="home">
-    <!--  แทปฟ้า -->
-    <section class="hero is-primary is-bold">
-        <div class="container"><br>
-            <h1 class="title is-1" style="font-family: 'Seymour One', sans-serif;">
-                W a s h
+    <!--  แทปดำ -->
+    <div class="bd-example is-paddingless">
+      <nav class="navbar is-dark navbar is-fixed-top">
+      <div class="navbar-brand">
 
-              <h2 class="is-pulled-right">
-                  <img class="image is-64x64" @click = "logout()" src="../assets/logout3.png">
-              </h2>
+        <h3 style="font-family:  'Russo One', sans-serif;" >  W a s h </h3>
 
-            </h1>
-            <label for="recipient-name" class="form-control-label"> Admin : {{this.user}}</label>
-            <br>
+
+      </div>
+
+      <div id="navMenuColorlink-example" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item is-active">
+            <span class="icon is-small "><i class="fa fa-users"></i></span>&nbsp;
+            <span v-on:click="home()">MEMBER</span>
+          </a>
+          <a class="navbar-item">
+            <span class="icon is-small"><i class="fa fa-user-plus"></i></span>&nbsp;
+            <span v-on:click="addadmin()" >Add admin</span>
+          </a>
+          <a class="navbar-item">
+            <span class="icon is-small"><i class="fa fa-money"></i></span>&nbsp;
+            <span  v-on:click="Add_user_credit()" >Add user credit</span>
+          </a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              <span class="icon is-small"><i class="fa fa-pie-chart"></i></span>&nbsp;
+              <span  v-on:click="Earnings_Revenue1()">Earnings Revenue 1</span>
+            </a>
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="">
+                Overview
+              </a>
+              <a class="navbar-item" href="">
+                Modifiers
+              </a>
+              <a class="navbar-item" href="">
+                Columns
+              </a>
+              <a class="navbar-item" href="">
+                Layout
+              </a>
+              <a class="navbar-item" href="">
+                Form
+              </a>
+              <hr class="navbar-divider">
+              <a class="navbar-item" href="">
+                Elements
+              </a>
+              <a class="navbar-item is-active" href="">
+                Components
+              </a>
+            </div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              <span class="icon is-small"><i class="fa fa-pie-chart"></i></span>&nbsp;
+              <span  v-on:click="Earnings_Revenue2()">Earnings Revenue 2</span>
+            </a>
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="">
+                Overview
+              </a>
+              <a class="navbar-item" href="">
+                Modifiers
+              </a>
+              <a class="navbar-item" href="">
+                Columns
+              </a>
+              <a class="navbar-item" href="">
+                Layout
+              </a>
+              <a class="navbar-item" href="">
+                Form
+              </a>
+              <hr class="navbar-divider">
+              <a class="navbar-item" href="">
+                Elements
+              </a>
+              <a class="navbar-item is-active" href="">
+                Components
+              </a>
+            </div>
+          </div>
         </div>
-    </section>
-  <!--  จบ แทปฟ้า -->
 
-<br>
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="field is-grouped">
+              <p class="control">
+                <h6>{{this.user}}</h6>
+                <a class="button is-dark" >
+                  <a class="button is-white is-outlined" @click = "logout()">LOGOUT</a>
 
-  <!--  แทปเมนูต่างๆ -->
-    <div class="tabs is-centered is-boxed is-medium">
-      <ul>
-          <li class="is-active">
-            <a>
-              <span class="icon is-small"><i class="fa fa-users"></i></span>
-              <span v-on:click="home()">MEMBER</span>
-            </a>
-          </li>
+                </a>
+              </p>
+            </div>
+          </div>
+       </div>
 
-          <li>
-            <a>
-              <span class="icon is-small"><i class="fa fa-user-plus"></i></span>
-              <span v-on:click="addadmin()" >Add admin</span>
-            </a>
-          </li>
+      </div>
+    </nav>
 
-          <li>
-            <a>
-              <span class="icon is-small"><i class="fa fa-money"></i></span>
-              <span  v-on:click="Add_user_credit()" >Add user credit</span>
-            </a>
-          </li>
-
-          <li>
-            <a>
-              <span class="icon is-small"><i class="fa fa-pie-chart"></i></span>
-              <span  v-on:click="Earnings_Revenue()">Earnings Revenue</span>
-            </a>
-          </li>
-      </ul>
     </div>
-    <!-- จบ แทปเมนูต่างๆ -->
+    <!--  จบ แทปดำ -->
+
+<!--
+    <div class="columns">
+        <div class="column"></div>
+          <div class="column is-two-thirds">
+            <div class="showmember"  v-for = " (users, key, count) in showusers">
+
+              {{users.name}}
+              {{users.email}}
+              {{users.Transfer_money}} Bath
+              {{users.money}} Bath
+            </div>
+          </div>
+        <div class="column"></div>
+    </div> -->
+
 
       <!-- แสดงตาราง member ผู้ใช้บริการทั้งหมด -->
       <div  class="tablemember" >
         <table class="table" >
-          <thead>
+          <thead class="table-secondary">
             <tr>
               <th scope="col">#</th>
               <th scope="col">Name</th>
               <th scope="col">E-mail</th>
+              <th scope="col">Transfer_money</th>
               <th scope="col">Credit</th>
             </tr>
           </thead>
             <tbody  v-for = " (users, key, count) in showusers">
-              <tr>
-                <td>  {{count+1}}  </td>
+              <tr >
+                <td >  {{count+1}}  </td>
                 <td>  {{users.name}}  </td>
                 <td>  {{users.email}} </td>
+                <td>  {{users.Transfer_money}} Bath </td>
                 <td>  {{users.money}} Bath </td>
               </tr>
             </tbody>
@@ -115,8 +186,11 @@ export default {
     addadmin () {
       this.$router.push({path: '/addadmin1'})
     },
-    Earnings_Revenue () {
+    Earnings_Revenue1 () {
       this.$router.push({path: '/Earnings_Revenue1'})
+    },
+    Earnings_Revenue2 () {
+      this.$router.push({path: '/Earnings_Revenue2'})
     },
     home () {
       this.$router.push({path: '/home1'})
@@ -130,7 +204,17 @@ export default {
 
 <style >
 .tablemember{
-  width: 55%;
-  margin-left: 23%;
+  width: 70%;
+  margin-left: 15%;
 }
+/* .showmember{
+  float: left;
+  padding: 1%;
+  margin: 0.5%;
+  width: 20%;
+
+    border-radius: 20px;
+    border: 2px solid #73AD21;
+} */
+
 </style>
